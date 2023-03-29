@@ -45,11 +45,14 @@ ggsave("BaikalMap.png", height = 10, width = 6)
 
 ## 2. Maps of particular locations with pies
 
-irkbox <- c(left=104.25, right=104.37, bottom=52.2, top=52.3)
+irkbox <- c(left=104.2, right=104.4, bottom=52.2, top=52.32)
 IrkMap <- get_stamenmap(irkbox, zoom=11, maptype = "terrain") ##maybe also toner ## and terrain-bcgnd with less zoom?
 #IrkMap <- get_googlemap(center=c(lat=104.3,lon=52.25), zoom=12, maptype = "satellite")
 #IrkMap <- get_stamenmap(irkbox, zoom=12, maptype = "watercolor")
-pIrkMap <- ggmap(IrkMap) + xlab("Longitude") + ylab("Latitude")
+pIrkMap <- ggmap(IrkMap) + 
+  xlab("Longitude") + ylab("Latitude") +
+  theme_bw(base_size = 14) + 
+  theme(plot.title = element_text(hjust = 0.5), plot.margin = margin(0.25, 0, 0, 0, "cm"))
 pIrkMap
   
 ## COI
@@ -62,11 +65,10 @@ pie_data_COI
 pIrkMap + 
   geom_scatterpie(data = pie_data_COI, cols=c("A", "S", "W"), color = "white",
                   aes(x=lon, y=lat, group=coordinate, r =.005), pie_scale = .2) + 
-      scale_fill_manual(values = c("forestgreen", "#4477AA"), name = "Haplogroup") + 
-      theme_bw(base_size = 14) + 
-      theme(title = element_text(hjust = 1), aspect.ratio = 1) + #coord_quickmap(expand = FALSE)
-      coord_fixed() + ggtitle("COI")
-ggsave("COI_Irk.png", width = 4, height = 4)
+      scale_fill_manual(values = c("#6CBB3C", "#4477AA"), name = "Haplogroup") + 
+      ggtitle("COI") -> pIrkCOI
+pIrkCOI
+#ggsave("COI_Irk.png", width = 4, height = 4)
 write.csv(pie_data_COI, "pie_data_COI.csv")
 
 
@@ -76,37 +78,91 @@ gather(coord_data[,c("coordinate", "spot", "lat", "lon", "18S")], key, value, -c
   spread(value, n, fill = 0) -> pie_data_18S
 
 pie_data_18S
-ggmap(IrkMap) + 
+pIrkMap + 
   geom_scatterpie(data = pie_data_18S, cols=c("A", "S", "W"),
-                  aes(x=lon, y=lat, group=coordinate, r =.003)) + 
-  coord_fixed() + ggtitle("18S") + 
-  scale_fill_manual(values = c("green", "blue"))
+                  color = "white",
+                  aes(x=lon, y=lat, group=coordinate, r =.005), pie_scale = .2) +
+  ggtitle("18S") +  #coord_fixed() + 
+  scale_fill_manual(values = c("#6CBB3C", "#4477AA"), name = "Haplogroup") -> pIrk18S
+pIrk18S
 ggsave("18S_Irk.png", width = 8, height = 4)
 write.csv(pie_data_18S, "pie_data_18S.csv")
 
-## we can try with long_format ## nope, doesn't work
-#ggmap(IrkMap) + 
-#  geom_scatterpie(data = coord_data, cols="COI", long_format = TRUE,
-#                  aes(x=lon, y=lat, r =.003)) + 
-#  coord_fixed() + ggtitle("COI")
+
+
+spots <- unique(coord_data[, c("lat", "lon", "spot")])
+#spots$spotLR <- paste(spots$spot, ifelse(spots$coast=="left coast", "L", "R"))
+#spots$nudge <- ifelse(spots$coast == "left", -.1, .1)
+spots %>% group_by(spot) %>% summarise(lat=mean(lat),lon=mean(lon)) -> uniqSpots
+
+library(ggrepel)
+pIrkCOI + 
+  geom_text_repel(data=uniqSpots, aes(x=lon, y=lat, label = spot), col = "grey20") -> pIrkCOI
+pIrk18S + 
+  geom_text_repel(data=uniqSpots, aes(x=lon, y=lat, label = spot), col = "grey20") -> pIrk18S
+
+library(ggpubr)
+ggarrange(pIrkCOI, pIrk18S, common.legend = TRUE)
+ggsave("both_Irkutsk.png", width = 8, height=5)
 
 
 ## Angara map (upstream of Irkutsk)
-upperbox <- c(left=104, right=105, bottom=51.5, top=52.2)
-UpperMap <- get_stamenmap(upperbox, zoom=12, maptype = "terrain")
-ggmap(UpperMap) + 
-  geom_scatterpie(data = pie_data_18S, cols=c("A", "S", "W"),
-                  aes(x=lon, y=lat, group=coordinate, r =.003)) + 
-  coord_fixed() + ggtitle("18S") + 
-  scale_fill_manual(values = c("green", "blue"))
+upperbox <- c(left=104.4, right=105, bottom=51.7, top=52.2)
+UpperMap <- get_stamenmap(upperbox, zoom=11, maptype = "terrain")
 
-ggmap(UpperMap) + 
-  geom_scatterpie(data = coord_data, cols="COI", long_format = TRUE,
-                  aes(x=lon, y=lat, r =.003)) + 
-  coord_fixed() + ggtitle("COI")
+pUpper <- ggmap(UpperMap) + 
+  xlab("Longitude") + ylab("Latitude") +
+  theme_bw(base_size = 14) + 
+  theme(plot.title = element_text(hjust = 0.5), plot.margin = margin(0.25, 0, 0, 0, "cm"))
 
-ggmap(UpperMap) + 
-  geom_scatterpie(data = coord_data, cols="18S", long_format = TRUE,
-                  aes(x=lon, y=lat, r =.003)) + 
-  coord_fixed() + ggtitle("18S")
 
+pUpper + 
+  geom_scatterpie(data = pie_data_18S, cols=c("A", "S", "W"), color = "white",
+                  aes(x=lon, y=lat, group=coordinate, r =.025), pie_scale = .2) + 
+  #coord_fixed() + 
+  ggtitle("18S") + 
+  scale_fill_manual(values = c("#6CBB3C", "#4477AA", "#F0E442"), name="Haplogroup") -> pUpper18S
+
+pUpper + 
+  geom_scatterpie(data = pie_data_COI, cols=c("A", "S", "W"), color = "white",
+                  aes(x=lon, y=lat, group=coordinate, r =.025), pie_scale = .2) + 
+  #coord_fixed() + 
+  ggtitle("COI") + 
+  scale_fill_manual(values = c("#6CBB3C", "#4477AA", "#F0E442"), name="Haplogroup") -> pUpperCOI
+
+pUpper18S + geom_text_repel(data=uniqSpots, aes(x=lon, y=lat, label = spot), col = "grey20") -> pUpper18S
+pUpperCOI + geom_text_repel(data=uniqSpots, aes(x=lon, y=lat, label = spot), col = "grey20") -> pUpperCOI
+
+ggarrange(pUpperCOI, pUpper18S, common.legend = TRUE)
+ggsave("both_upper.png", width = 8, height=5)
+
+
+## Bratsk map (downstream of Irkutsk)
+bratskbox <- c(left=101.5, right=102, bottom=56, top=56.4)
+BratskMap <- get_stamenmap(bratskbox, zoom=11, maptype = "terrain")
+
+pBratsk <- ggmap(BratskMap) + 
+  xlab("Longitude") + ylab("Latitude") +
+  theme_bw(base_size = 14) + 
+  theme(plot.title = element_text(hjust = 0.5), plot.margin = margin(0.25, 0, 0, 0, "cm"))
+
+
+pBratsk + 
+  geom_scatterpie(data = pie_data_18S, cols=c("A", "S", "W"), color = "white",
+                  aes(x=lon, y=lat, group=coordinate, r =.025), pie_scale = .2) + 
+  #coord_fixed() + 
+  ggtitle("18S") + 
+  scale_fill_manual(values = c("#6CBB3C", "#4477AA", "#F0E442"), name="Haplogroup") -> pBratsk18S
+
+pBratsk + 
+  geom_scatterpie(data = pie_data_COI, cols=c("A", "S", "W"), color = "white",
+                  aes(x=lon, y=lat, group=coordinate, r =.025), pie_scale = .2) + 
+  #coord_fixed() + 
+  ggtitle("COI") + 
+  scale_fill_manual(values = c("#6CBB3C", "#4477AA", "#F0E442"), name="Haplogroup") -> pBratskCOI
+
+pBratsk18S + geom_text_repel(data=uniqSpots, aes(x=lon, y=lat, label = spot), col = "grey20") -> pBratsk18S
+pBratskCOI + geom_text_repel(data=uniqSpots, aes(x=lon, y=lat, label = spot), col = "grey20") -> pBratskCOI
+
+ggarrange(pBratskCOI, pBratsk18S, common.legend = TRUE)
+ggsave("both_Bratsk.png", width = 8, height=5)
