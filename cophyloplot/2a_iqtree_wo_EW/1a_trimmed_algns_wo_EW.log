@@ -1,0 +1,358 @@
+IQ-TREE multicore version 2.0.7 for Linux 64-bit built Jan 21 2022
+Developed by Bui Quang Minh, Nguyen Lam Tung, Olga Chernomor,
+Heiko Schmidt, Dominik Schrempf, Michael Woodhams.
+
+Host:    drozdovapb-HP-17-by1xxx (AVX2, FMA3, 11 GB RAM)
+Command: iqtree2 -S 1a_trimmed_algns_wo_EW -o Evi_Listv_NA -bb 1000 --redo
+Seed:    31808 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Wed Mar 29 14:24:00 2023
+Kernel:  AVX+FMA - 1 threads (8 CPU cores detected)
+
+HINT: Use -nt option to specify number of threads because your CPU has 8 cores!
+HINT: -nt AUTO will automatically determine the best number of threads to use.
+
+Reading 2 alignment files in directory 1a_trimmed_algns_wo_EW
+Reading alignment file 1a_trimmed_algns_wo_EW/18S_aln_maxtrim.fa ... Fasta format detected
+Alignment most likely contains DNA/RNA sequences
+Alignment has 133 sequences with 472 columns, 13 distinct patterns
+2 parsimony-informative, 4 singleton sites, 466 constant sites
+              Gap/Ambiguity  Composition  p-value
+   1  A7_B.L_A        0.00%    passed     99.99%
+   2  A9_B.L_A        0.00%    passed     99.99%
+   3  A10_B.L_A       0.00%    passed     99.99%
+   4  A13_B.L_A       0.00%    passed     99.99%
+   5  A33_S_A         0.00%    passed     99.99%
+   6  A34_S_A         0.00%    passed     99.99%
+   7  A35_S_A         0.00%    passed     99.99%
+   8  A36_S_A         0.00%    passed     99.99%
+   9  A38_S_A         0.00%    passed     99.99%
+  10  A39_S_A         0.00%    passed     99.99%
+  11  A56_T.O_A       0.00%    passed     99.99%
+  12  A85_V.N_A       0.00%    passed     99.99%
+  13  A86_V.N_A       0.00%    passed     99.99%
+  14  A87_V.N_A       0.00%    passed     99.99%
+  15  A88_V.N_A       0.00%    passed     99.99%
+  16  A89_V.N_A       0.00%    passed     99.99%
+  17  A93_V.N_A       0.00%    passed     99.99%
+  18  A95_V.N_A       0.00%    passed     99.99%
+  19  A96_V.N_A       0.00%    passed     99.99%
+  20  A99_V.N_A       0.00%    passed     99.99%
+  21  A100_V.N_A      0.00%    passed     99.99%
+  22  A107_J_A        0.00%    passed     99.99%
+  23  A108_J_A        0.00%    passed     99.99%
+  24  A109_J_A        0.00%    passed     99.99%
+  25  A110_J_A        0.00%    passed     99.99%
+  26  A111_J_A        0.00%    passed     99.99%
+  27  E1_A.R_S        0.00%    passed     99.99%
+  28  E2_A.R_S        0.00%    passed     99.99%
+  29  E3_A.R_S        0.00%    passed     99.99%
+  30  E4_A.R_S        0.00%    passed     99.99%
+  31  E5_A.R_S        0.00%    passed     99.99%
+  32  E6_A.R_S        0.00%    passed     99.99%
+  33  E24_A.R_S       0.00%    passed     99.99%
+  34  E25_A.R_S       0.00%    passed     99.99%
+  35  E26_A.R_S       0.00%    passed     99.99%
+  36  E27_A.R_S       0.00%    passed     99.99%
+  37  E28_B.R_S       0.00%    passed     99.99%
+  38  E32_G.R_S       0.00%    passed     99.99%
+  39  E33_G.R_A       0.00%    passed     99.99%
+  40  E34_G.R_S       0.00%    passed     99.99%
+  41  E35_G.R_S       0.00%    passed     99.99%
+  42  E36_G.R_S       0.00%    passed     99.99%
+  43  E37_G.R_S       0.00%    passed     99.99%
+  44  E38_G.R_S       0.00%    passed     99.99%
+  45  E61_G.R_S       0.00%    passed     99.99%
+  46  E62_G.R_S       0.00%    passed     99.99%
+  47  E63_G.R_S       0.00%    passed     99.99%
+  48  E64_G.L_S       0.00%    passed     99.99%
+  49  E65_G.L_S       0.00%    passed     99.99%
+  50  E66_G.L_S       0.00%    passed     99.99%
+  51  E67_G.L_S       0.00%    passed     99.99%
+  52  E72_G.L_S       0.00%    passed     99.99%
+  53  E73_G.L_S       0.00%    passed     99.99%
+  54  E85_G.L_S       0.00%    passed     99.99%
+  55  E86_G.L_S       0.00%    passed     99.99%
+  56  E99_G.L_S       0.00%    passed     99.99%
+  57  E102_G.L_S      0.00%    passed     99.99%
+  58  E103_B.L_S      0.00%    passed     99.99%
+  59  E104_B.L_S      0.00%    passed     99.99%
+  60  E105_B.L_S      0.00%    passed     99.99%
+  61  E106_B.L_S      0.00%    passed     99.99%
+  62  E107_B.L_S      0.00%    passed     99.99%
+  63  E108_A.L_S      0.00%    passed     99.99%
+  64  E109_A.L_S      0.00%    passed     99.99%
+  65  E111_A.L_S      0.00%    passed     99.99%
+  66  E112_A.L_S      0.00%    passed     99.99%
+  67  E113_A.L_S      0.00%    passed     99.99%
+  68  E138_A.L_S      0.00%    passed     99.99%
+  69  E139_A.L_S      0.00%    passed     99.99%
+  70  E149_A.L_S      0.00%    passed     99.99%
+  71  E150_A.L_S      0.00%    passed     99.99%
+  72  E151_A.L_S      0.00%    passed     99.99%
+  73  E153_S_A        0.00%    passed     99.99%
+  74  E154_J_S        0.00%    passed     99.99%
+  75  E155_J_A        0.00%    passed     99.99%
+  76  E156_J_S        0.00%    passed     99.99%
+  77  E157_J_S        0.00%    passed     99.99%
+  78  E163_T.O_S      0.00%    passed     99.99%
+  79  E164_T.O_S      0.00%    passed     99.99%
+  80  E165_T.O_S      0.00%    passed     99.99%
+  81  E166_T.O_S      0.00%    passed     99.99%
+  82  E170_T.O_S      0.00%    passed     99.99%
+  83  E171_T.O_S      0.00%    passed     99.99%
+  84  E172_T.O_S      0.00%    passed     99.99%
+  85  E177_T.O_S      0.00%    passed     99.99%
+  86  E178_T.O_S      0.00%    passed     99.99%
+  87  E197_T.O_S      0.00%    passed     99.99%
+  88  E199_J_S        0.00%    passed     99.99%
+  89  E200_J_S        0.00%    passed     99.99%
+  90  E240_S_A        0.00%    passed     99.99%
+  91  E241_S_A        0.00%    passed     99.99%
+  92  A167_K.T_A      0.00%    passed     99.99%
+  93  A168_K.T_A      0.00%    passed     99.99%
+  94  A169_K.T_A      0.00%    passed     99.99%
+  95  A169a_K.T_A     0.00%    passed     99.99%
+  96  A170_K.T_A      0.00%    passed     99.99%
+  97  A171_K.T_A      0.21%    passed     99.94%
+  98  A172_K.T_A      0.00%    passed     99.99%
+  99  A173_K.T_A      0.00%    passed     99.99%
+ 100  A174_P_A        0.00%    passed     99.99%
+ 101  A175_P_A        0.00%    passed     99.99%
+ 102  A176_P_A        0.00%    passed     99.99%
+ 103  A177_P_A        1.06%    passed     99.96%
+ 104  A178_P_A        0.00%    passed     99.99%
+ 105  A179_P_A        0.00%    passed     99.99%
+ 106  A180_P_A        0.00%    passed     99.99%
+ 107  A189_Z_A        0.00%    passed     99.99%
+ 108  A190_Z_A        0.00%    passed     99.99%
+ 109  A191_Z_A        0.00%    passed     99.99%
+ 110  A192_Z_A        0.00%    passed     99.99%
+ 111  A193_Z_A        0.00%    passed     99.99%
+ 112  A194_Z_A        0.00%    passed     99.99%
+ 113  A195_Z_A        0.00%    passed     99.99%
+ 114  E201_K_A        0.00%    passed     99.99%
+ 115  E202_K_A        0.00%    passed     99.99%
+ 116  E203_K_A        0.00%    passed     99.99%
+ 117  E204_K_A        0.00%    passed     99.99%
+ 118  E205_K_A        0.00%    passed     99.99%
+ 119  E212_N_S        0.00%    passed     99.99%
+ 120  E214_N_S        0.00%    passed     99.99%
+ 121  E215_N_S        0.00%    passed     99.99%
+ 122  E217_N_S        0.00%    passed     99.99%
+ 123  E218_N_S        0.00%    passed     99.99%
+ 124  E219_N_S        0.00%    passed     99.99%
+ 125  E220_N_S        0.00%    passed     99.99%
+ 126  E221_K_A        0.00%    passed     99.99%
+ 127  E222_K_A        0.00%    passed     99.99%
+ 128  E223_K_A        0.00%    passed     99.99%
+ 129  E224_K_A        0.00%    passed     99.99%
+ 130  E225_K_A        0.00%    passed     99.99%
+ 131  E_Baikalsk_S    0.00%    passed     99.99%
+ 132  E_PB_S          0.00%    passed     99.99%
+ 133  Evi_Listv_NA    0.00%    passed     98.57%
+****  TOTAL           0.01%  0 sequences failed composition chi2 test (p-value<5%; df=3)
+Reading alignment file 1a_trimmed_algns_wo_EW/COI_aln_maxtrim.fa ... Fasta format detected
+Alignment most likely contains DNA/RNA sequences
+Alignment has 133 sequences with 537 columns, 119 distinct patterns
+99 parsimony-informative, 47 singleton sites, 391 constant sites
+              Gap/Ambiguity  Composition  p-value
+   1  A7_B.L_A        0.00%    passed     97.45%
+   2  A9_B.L_A        0.00%    passed     97.45%
+   3  A10_B.L_A       0.00%    passed     97.45%
+   4  A13_B.L_A       0.00%    passed     97.45%
+   5  A33_S_A         0.00%    passed     93.87%
+   6  A34_S_S         0.00%    passed     96.18%
+   7  A35_S_A         0.00%    passed     91.49%
+   8  A36_S_A         0.00%    passed     91.49%
+   9  A38_S_A         0.00%    passed     97.45%
+  10  A39_S_A         0.00%    passed     97.45%
+  11  A56_T.O_A       0.00%    passed     97.82%
+  12  A85_V.N_A       0.00%    passed     97.45%
+  13  A86_V.N_A       0.00%    passed     97.45%
+  14  A87_V.N_A       0.00%    passed     97.69%
+  15  A88_V.N_A       0.00%    passed     97.45%
+  16  A89_V.N_A       0.00%    passed     97.45%
+  17  A93_V.N_A       0.00%    passed     97.45%
+  18  A95_V.N_A       0.00%    passed     97.45%
+  19  A96_V.N_A       0.00%    passed     91.49%
+  20  A99_V.N_A       0.00%    passed     97.45%
+  21  A100_V.N_A      0.00%    passed     91.49%
+  22  A107_J_A        0.00%    passed     97.45%
+  23  A108_J_A        0.00%    passed     91.49%
+  24  A109_J_A        0.00%    passed     91.49%
+  25  A110_J_A        0.00%    passed     91.49%
+  26  A111_J_A        0.00%    passed     98.05%
+  27  E1_A.R_S        0.00%    passed     99.23%
+  28  E2_A.R_S        0.00%    passed     96.84%
+  29  E3_A.R_S        0.00%    passed     96.84%
+  30  E4_A.R_S        0.00%    passed     98.35%
+  31  E5_A.R_S        0.00%    passed     95.85%
+  32  E6_A.R_S        0.00%    passed     96.84%
+  33  E24_A.R_S       0.00%    passed     94.52%
+  34  E25_A.R_S       0.00%    passed     96.84%
+  35  E26_A.R_S       0.00%    passed     98.43%
+  36  E27_A.R_S       0.00%    passed     95.85%
+  37  E28_B.R_S       0.00%    passed     91.41%
+  38  E32_G.R_S       0.00%    passed     96.84%
+  39  E33_G.R_A       0.00%    passed     98.60%
+  40  E34_G.R_S       0.00%    passed     96.18%
+  41  E35_G.R_S       0.00%    passed     95.46%
+  42  E36_G.R_S       0.00%    passed     97.19%
+  43  E37_G.R_S       0.00%    passed     98.63%
+  44  E38_G.R_S       0.00%    passed     92.55%
+  45  E61_G.R_S       0.00%    passed     92.55%
+  46  E62_G.R_S       0.00%    passed     94.93%
+  47  E63_G.R_S       0.00%    passed     91.28%
+  48  E64_G.L_S       0.00%    passed     97.48%
+  49  E65_G.L_S       0.00%    passed     98.63%
+  50  E66_G.L_S       0.00%    passed     97.48%
+  51  E67_G.L_S       0.00%    passed     96.84%
+  52  E72_G.L_S       0.00%    passed     95.85%
+  53  E73_G.L_S       0.00%    passed     94.12%
+  54  E85_G.L_S       0.00%    passed     95.85%
+  55  E86_G.L_S       0.00%    passed     98.43%
+  56  E99_G.L_S       0.00%    passed     98.43%
+  57  E102_G.L_S      0.00%    passed     95.85%
+  58  E103_B.L_S      0.00%    passed     96.84%
+  59  E104_B.L_S      0.00%    passed     93.39%
+  60  E105_B.L_S      0.00%    passed     97.69%
+  61  E106_B.L_S      0.00%    passed     92.55%
+  62  E107_B.L_S      0.00%    passed     95.85%
+  63  E108_A.L_S      0.00%    passed     98.97%
+  64  E109_A.L_S      0.00%    passed     98.19%
+  65  E111_A.L_S      0.00%    passed     96.84%
+  66  E112_A.L_S      0.00%    passed     96.84%
+  67  E113_A.L_S      0.00%    passed     95.85%
+  68  E138_A.L_S      0.00%    passed     96.84%
+  69  E139_A.L_S      0.00%    passed     97.48%
+  70  E149_A.L_S      0.00%    passed     97.48%
+  71  E150_A.L_S      0.00%    passed     96.87%
+  72  E151_A.L_S      0.00%    passed     97.19%
+  73  E153_S_A        0.00%    passed     91.49%
+  74  E154_J_S        0.00%    passed     88.51%
+  75  E155_J_A        0.00%    passed     97.45%
+  76  E156_J_S        0.00%    passed     95.94%
+  77  E157_J_S        0.00%    passed     94.52%
+  78  E163_T.O_S      0.00%    passed     99.19%
+  79  E164_T.O_S      0.00%    passed     96.84%
+  80  E165_T.O_S      0.00%    passed     95.85%
+  81  E166_T.O_S      0.00%    passed     96.84%
+  82  E170_T.O_S      0.00%    passed     96.84%
+  83  E171_T.O_S      0.00%    passed     97.48%
+  84  E172_T.O_S      0.00%    passed     97.48%
+  85  E177_T.O_S      0.00%    passed     98.63%
+  86  E178_T.O_S      0.00%    passed     98.35%
+  87  E197_T.O_S      0.00%    passed     97.48%
+  88  E199_J_S        0.00%    passed     96.84%
+  89  E200_J_S        0.00%    passed     84.40%
+  90  E240_S_A        0.00%    passed     98.05%
+  91  E241_S_A        0.00%    passed     91.49%
+  92  A167_K.T_A      0.00%    passed     97.75%
+  93  A168_K.T_A      0.00%    passed     91.49%
+  94  A169a_K.T_A     0.00%    passed     98.67%
+  95  A169_K.T_A      0.00%    passed     91.49%
+  96  A170_K.T_A      0.00%    passed     91.49%
+  97  A171_K.T_A      0.00%    passed     97.45%
+  98  A172_K.T_A      0.00%    passed     91.49%
+  99  A173_K.T_A      0.00%    passed     97.45%
+ 100  A174_P_S        0.00%    passed     98.35%
+ 101  A175_P_A        0.00%    passed     91.49%
+ 102  A176_P_A        0.00%    passed     91.49%
+ 103  A177_P_A        0.00%    passed     91.49%
+ 104  A178_P_A        0.00%    passed     91.49%
+ 105  A179_P_A        0.00%    passed     97.45%
+ 106  A180_P_A        0.00%    passed     91.49%
+ 107  A189_Z_A        0.00%    passed     91.49%
+ 108  A190_Z_A        0.00%    passed     91.49%
+ 109  A191_Z_A        0.00%    passed     97.45%
+ 110  A192_Z_A        0.00%    passed     91.49%
+ 111  A193_Z_A        0.00%    passed     91.49%
+ 112  A194_Z_A        0.00%    passed     91.49%
+ 113  A195_Z_A        0.00%    passed     91.49%
+ 114  E201_K_A        0.00%    passed     97.45%
+ 115  E202_K_A        0.00%    passed     91.49%
+ 116  E203_K_A        0.00%    passed     97.26%
+ 117  E204_K_A        0.00%    passed     91.49%
+ 118  E205_K_A        0.00%    passed     97.45%
+ 119  E212_N_S        0.00%    passed     95.85%
+ 120  E214_N_S        0.00%    passed     95.85%
+ 121  E215_N_S        0.00%    passed     96.84%
+ 122  E217_N_S        0.00%    passed     96.84%
+ 123  E218_N_S        0.00%    passed     97.48%
+ 124  E219_N_S        0.00%    passed     97.48%
+ 125  E220_N_S        0.00%    passed     95.85%
+ 126  E221_K_A        0.00%    passed     97.45%
+ 127  E222_K_A        0.00%    passed     91.49%
+ 128  E223_K_A        0.00%    passed     91.49%
+ 129  E224_K_A        0.00%    passed     91.49%
+ 130  E225_K_A        0.00%    passed     97.45%
+ 131  E_Baikalsk_S    0.00%    passed     97.07%
+ 132  E_PB_S          0.00%    passed     88.51%
+ 133  Evi_Listv_NA    0.00%    passed     99.75%
+****  TOTAL           0.00%  0 sequences failed composition chi2 test (p-value<5%; df=3)
+Subset	Type	Seqs	Sites	Infor	Invar	Model	Name
+1		133	472	2	466		18S_aln_maxtrim.fa
+2		133	537	99	391		COI_aln_maxtrim.fa
+Linked 135 total sequences
+
+Creating fast initial parsimony tree by random order stepwise addition...
+0.111 seconds, parsimony score: 255 (based on 152 sites)
+Perform fast likelihood tree search using GTR+I+G model...
+Estimate model parameters (epsilon = 5.000)
+Perform nearest neighbor interchange...
+Estimate model parameters (epsilon = 1.000)
+Estimate model parameters (epsilon = 1.000)
+Log-likelihood: -2732.503
+Time for fast ML tree search: 0.627 seconds
+
+NOTE: ModelFinder requires 5 MB RAM!
+Selecting individual models for 2 charsets using BIC...
+ No. Model        Score       TreeLen     Charset
+   1 JC           3013.355    0.013       18S_aln_maxtrim.fa
+   2 HKY+F+G4     5770.862    0.645       COI_aln_maxtrim.fa
+Full partition model BIC score: 9153.060 (LnL: -2740.142  df:531)
+Partition information was printed to 1a_trimmed_algns_wo_EW.best_scheme.nex
+Partition information in Raxml format was printed to 1a_trimmed_algns_wo_EW.best_scheme
+
+All model information printed to 1a_trimmed_algns_wo_EW.model.gz
+CPU time for ModelFinder: 16.576 seconds (0h:0m:16s)
+Wall-clock time for ModelFinder: 16.840 seconds (0h:0m:16s)
+Generating 1000 samples for ultrafast bootstrap (seed: 31808)...
+
+NOTE: 2 MB RAM (0 GB) is required!
+Estimate model parameters (epsilon = 0.100)
+Partition COI_aln_maxtrim.fa / Model: HKY+F+G4 / df: 268 / LogL: -2043.107
+Partition 18S_aln_maxtrim.fa / Model: JC / df: 263 / LogL: -697.035
+Optimal log-likelihood: -2740.142
+--------------------------------------------------------------------
+|                SEPARATE TREE SEARCH FOR PARTITIONS               |
+--------------------------------------------------------------------
+Partition COI_aln_maxtrim.fa / Iterations: 1001 / LogL: -2000.42 / Time: 0h:12m:47s
+Partition 18S_aln_maxtrim.fa / Iterations: 1001 / LogL: -697.035 / Time: 0h:18m:8s
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+Partition COI_aln_maxtrim.fa / Model: HKY+F+G4 / df: 268 / LogL: -2000.416
+Partition 18S_aln_maxtrim.fa / Model: JC / df: 263 / LogL: -697.035
+Optimal log-likelihood: -2697.451
+Partition information was printed to 1a_trimmed_algns_wo_EW.best_model.nex
+BEST SCORE FOUND : -2697.451
+Creating bootstrap support values...
+Total tree length: 0.627
+
+Total number of iterations: 0
+CPU time used for tree search: 1070.878 sec (0h:17m:50s)
+Wall-clock time used for tree search: 1088.579 sec (0h:18m:8s)
+Total CPU time used: 1073.263 sec (0h:17m:53s)
+Total wall-clock time used: 1090.968 sec (0h:18m:10s)
+
+Analysis results written to: 
+  IQ-TREE report:                1a_trimmed_algns_wo_EW.iqtree
+  Maximum-likelihood tree:       1a_trimmed_algns_wo_EW.treefile
+
+Ultrafast bootstrap approximation results written to:
+  Screen log file:               1a_trimmed_algns_wo_EW.log
+
+Date and Time: Wed Mar 29 14:42:29 2023

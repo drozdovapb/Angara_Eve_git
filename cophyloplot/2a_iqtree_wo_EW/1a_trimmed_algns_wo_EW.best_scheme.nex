@@ -1,0 +1,8 @@
+#nexus
+begin sets;
+  charset 18S_aln_maxtrim.fa = 1a_trimmed_algns_wo_EW/18S_aln_maxtrim.fa: ;
+  charset COI_aln_maxtrim.fa = 1a_trimmed_algns_wo_EW/COI_aln_maxtrim.fa: ;
+  charpartition mymodels =
+    JC: 18S_aln_maxtrim.fa,
+    HKY+F+G4: COI_aln_maxtrim.fa;
+end;
