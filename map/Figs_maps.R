@@ -36,12 +36,13 @@ ggmap(BaikalMapBW) + xlab("Longitude") + ylab("Latitude") +
   geom_point(data = coord_data, aes(x = lon, y = lat), alpha = 1, size = 6, col = "red", shape = '\U2691') +
   theme_classic(base_size = 22) + theme(panel.border = element_rect(colour = "black", fill=NA, size=1))
 ggsave("BaikalMapBW.png", height = 10, width = 6)
+ggsave("BaikalMapBW.svg", height = 10, width = 6)
 
 ggmap(BaikalMap) + xlab("Longitude") + ylab("Latitude") +
   geom_point(data = coord_data, aes(x = lon, y = lat), alpha = 1, size = 6, col = "red", shape = '\U2691') +
   theme_classic(base_size = 22) + theme(panel.border = element_rect(colour = "black", fill=NA, size=1))
 ggsave("BaikalMap.png", height = 10, width = 6)
-
+ggsave("BaikalMap.svg", height = 10, width = 6)
 
 ## 2. Maps of particular locations with pies
 
