@@ -1,13 +1,7 @@
 library("phangorn")
 
 ## read the data = nexus file recorded with SplitsTree4 (!)
-network <- read.nexus.networx("COI_aln_maxtrim.fa-2.nex")
-
-## get the number of vertices, as we'll need the later
-#nextxt <- readLines("COI_aln_maxtrim.fa-2.nex")
-#nextxt[grep("nvertices", nextxt)]
-#nn <- 3030 #nvertices #can get eg with grep nvertices
-
+network <- read.nexus.networx("COI.nex")
 
 plot(network, type="2D", show.tip.label=TRUE, show.node.label=TRUE,
      edge.width=0.5, cex=0.5, scale.bar = 1)#, tip.color=adjustcolor(lvc, alpha.f=0.75))
@@ -46,12 +40,12 @@ these.Evi <- grep("Evi", network$translate$label, fixed=TRUE)
 color.group[network$translate$node[these.Evi]] <- "grey50"
 
 ## save the figure
-#svg()
-png(filename = "split_network.png", width = 480, height = 480)
+svg(filename = "split_network_COI.svg", width = 5, height = 5) ## svg counts in inches
+#png(filename = "split_network.png", width = 480, height = 480)
 par(mar=c(0, 0, 0, 0))
 plot(network, type="2D", show.tip.label=FALSE, show.node.label=TRUE, node.label=shape.group, 
      edge.width=0.5, cex=1, tip.color=adjustcolor(color.group, alpha.f=0.75))
-legend("topleft", border = FALSE, bty = "n" , cex = 1.2,
+legend("bottomleft", border = FALSE, bty = "n" , cex = 1.2,
        legend = c("Angara", "Western", "Southern", "Eastern", "outgroup"),
        fill = c("#228b22", "#F0E442", "#4477AA", "#D81B60", "grey50"))
 dev.off()
