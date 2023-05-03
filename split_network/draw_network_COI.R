@@ -40,12 +40,18 @@ these.Evi <- grep("Evi", network$translate$label, fixed=TRUE)
 color.group[network$translate$node[these.Evi]] <- "grey50"
 
 ## save the figure
-svg(filename = "split_network_COI.svg", width = 5, height = 5) ## svg counts in inches
-#png(filename = "split_network.png", width = 480, height = 480)
+#svg(filename = "split_network_COI.svg", width = 5, height = 5) ## svg counts in inches
+png(filename = "split_network_COI.png", width = 20, height = 15, units = "cm", res=300)
 par(mar=c(0, 0, 0, 0))
 plot(network, type="2D", show.tip.label=FALSE, show.node.label=TRUE, node.label=shape.group, 
      edge.width=0.5, cex=1, tip.color=adjustcolor(color.group, alpha.f=0.75))
-legend("bottomleft", border = FALSE, bty = "n" , cex = 1.2,
+legend("bottomleft", border = FALSE, bty = "n" , cex = 1.2, pch=21,
+       title = "Haplogroup:",
        legend = c("Angara", "Western", "Southern", "Eastern", "outgroup"),
-       fill = c("#228b22", "#F0E442", "#4477AA", "#D81B60", "grey50"))
+       col = c("#228b22", "#F0E442", "#4477AA", "#D81B60", "grey50"),
+       pt.bg = c("#228b22", "#F0E442", "#4477AA", "#D81B60", "grey50"))
+legend("bottomright", border = FALSE, bty = "n" , cex = 1.2,
+       title = "Location: ",
+       legend = c("Angara river", "Lake Baikal"), pch=c(21, 22))
+
 dev.off()
