@@ -18,7 +18,9 @@ library(grid) ## for inset
 ## Plot background maps of the three places
 ## Irkutsk
 irkbox <- c(left=104.2, right=104.4, bottom=52.2, top=52.32)
-IrkMap <- get_stamenmap(irkbox, zoom=11, maptype = "terrain-background") ##with higher zoom some parts go missing
+#IrkMap <- get_map(irkbox, zoom=13, maptype = "terrain", source = "stamen", filename = "irkmap") ##terrain-background 10; with higher zoom some parts go missing
+##terrain-background 10; with higher zoom some parts go missing
+IrkMap <- get_map(irkbox, zoom=10, maptype = "terrain-background", source = "stamen", filename = "irkmap") 
 pIrkMap <- ggmap(IrkMap) + 
   xlab("Longitude") + ylab("Latitude") +
   ## add arrow
@@ -27,12 +29,13 @@ pIrkMap <- ggmap(IrkMap) +
                lineend='round', linejoin='bevel', linetype = "dotted",
                col="darkblue") +
   theme_bw(base_size = 14) + 
-  theme(plot.title = element_text(hjust = 0.5), plot.margin = margin(0.25, 0, 0, 0, "cm"))
+  theme(plot.title = element_text(hjust = 0.5, size=14), plot.margin = margin(0.25, 0, 0, 0, "cm"))
 pIrkMap
 
 
 ## Angara map upstream of Irkutsk
 upperbox <- c(left=104.45, right=104.95, bottom=51.75, top=52.15)
+#UpperMap <- get_stamenmap(upperbox, zoom=11, maptype = "terrain")
 UpperMap <- get_stamenmap(upperbox, zoom=11, maptype = "terrain-background")
 pUpper <- ggmap(UpperMap) + 
   xlab("Longitude") + ylab("Latitude") +
@@ -41,11 +44,13 @@ pUpper <- ggmap(UpperMap) +
                arrow = arrow(length = unit(0.5, "cm")), 
                lineend='round', linejoin='bevel', linetype = "dotted",
                col="darkblue") + 
-  theme(plot.title = element_text(hjust = 0.5), plot.margin = margin(0.25, 0, 0, 0, "cm"))
+  ggtitle ("Angara before Irkutsk") + 
+  theme(plot.title = element_text(hjust = 0.5, size = 14), plot.margin = margin(0.25, 0, 0, 0, "cm"))
 pUpper
 
 ## Bratsk map (downstream of Irkutsk)
 bratskbox <- c(left=101.5, right=102, bottom=56, top=56.4)
+#BratskMap <- get_stamenmap(bratskbox, zoom=11, maptype = "terrain")
 BratskMap <- get_stamenmap(bratskbox, zoom=11, maptype = "terrain-background")
 pBratsk <- ggmap(BratskMap) + 
   geom_segment(aes(x = 101.75, y = 56.1, xend = 101.75, yend = 56.2),
@@ -53,8 +58,8 @@ pBratsk <- ggmap(BratskMap) +
                lineend='round', linejoin='bevel', linetype = "dotted",
                col="darkblue") + 
   xlab("Longitude") + ylab("Latitude") +
-  theme_bw(base_size = 14) + 
-  theme(plot.title = element_text(hjust = 0.5), plot.margin = margin(0.25, 0, 0, 0, "cm"))
+  theme_bw(base_size = 14/1) + 
+  theme(plot.title = element_text(hjust = 0.5, size=14/1), plot.margin = margin(0.25, 0, 0, 0, "cm"))
 pBratsk
 
 
@@ -86,7 +91,7 @@ gather(coord_data[,c("coordinate", "spot", "coast", "lat", "lon", "COI")], key, 
 ## melt data to plot
 pie_data_COIm <- melt(pie_data_COI, measure.vars = list("A", "S", "W"))
 ## decide how much to adjust coordinate for the pies
-pie_data_COI$adjust.B <- ifelse(pie_data_COI$coast=="right coast", 0.05, -0.05)
+pie_data_COI$adjust.B <- ifelse(pie_data_COI$coast=="right coast", 0.015, -0.015)
 pie_data_COI$adjust.Irk <- ifelse(pie_data_COI$coast=="right coast", 0.005, -0.005)
 pie_data_COI$adjust.U <- ifelse(pie_data_COI$coast=="right coast", 0.02, -0.02)
 
@@ -149,10 +154,10 @@ pIrkMap.test3 + geom_text(data=uniqSpots, aes(x=lona.I, y=lat, label = letter), 
   scale_color_manual(values = c("#66BB3C", "#4477AA", "#F0E442"), name="Haplogroup") + 
   theme(legend.position = "right") -> pIrkMap.4
 pIrkMap.4
-ggsave("Irk_both_pies.svg", width = 20, height = 20, units = "cm")
+#ggsave("Irk_both_pies.svg", width = 20, height = 20, units = "cm")
 ## ggsave png looks weird :(
 #ggsave("Irk_both_pies.png", width = 20, height = 20, units = "cm", device=ragg::agg_png)
-png("Irk_both_pies.png", width=20, height=20, units="cm", res=300); print(pIrkMap.4); dev.off()
+#png("Irk_both_pies.png", width=20, height=20, units="cm", res=300); print(pIrkMap.4); dev.off()
 
 ## this is the pie list for the bigger maps
 pie_annotation_list <- lapply(1:length(unique(pie_data_COI$coordinate)), function(x) 
@@ -172,18 +177,18 @@ pUpper.2 +
   scale_color_manual(values = c("#66BB3C", "#4477AA", "#F0E442"), name="Haplogroup") + 
   theme(legend.position = "right") -> pUpper.3
 pUpper.3
-ggsave("Upper_both_pies.svg", width = 20, height = 20, units="cm")
+#ggsave("Upper_both_pies.svg", width = 20, height = 20, units="cm")
 #ggsave("Upper_both_pies.png", width = 5, height = 5)
-png("Upper_both_pies.png", width=20, height=20, units="cm", res=300); print(pUpper.3); dev.off()
+#png("Upper_both_pies.png", width=20, height=20, units="cm", res=300); print(pUpper.3); dev.off()
 
 
 ## and even bigger for Bratsk
 pie_annotation_list <- lapply(1:length(unique(pie_data_COI$coordinate)), function(x) 
   inset(pie.testplot_list[[x]], 
-        xmin = pie_data_COI[x, "lon"] - 2e-2 + pie_data_COI[x, "adjust.U"],
-        xmax = pie_data_COI[x, "lon"] + 2e-2 + pie_data_COI[x, "adjust.U"],
-        ymin = pie_data_COI[x, "lat"] - 2e-2,
-        ymax = pie_data_COI[x, "lat"] + 2e-2) )
+        xmin = pie_data_COI[x, "lon"] - 3e-2 + pie_data_COI[x, "adjust.B"],
+        xmax = pie_data_COI[x, "lon"] + 3e-2 + pie_data_COI[x, "adjust.B"],
+        ymin = pie_data_COI[x, "lat"] - 3e-2,
+        ymax = pie_data_COI[x, "lat"] + 3e-2) )
 uniqSpots$lona <- uniqSpots$lon+uniqSpots$adjust.B
 pBratsk.2 <- Reduce("+", pie_annotation_list, pBratsk)
 #pBratsk.2 + geom_text_repel(data=uniqSpots, aes(x=lon, y=lat, label = letter), col = "black")
@@ -192,7 +197,20 @@ pBratsk.2 + geom_text(data=uniqSpots, aes(x=lona, y=lat, label = letter), col = 
   scale_color_manual(values = c("#66BB3C", "#4477AA", "#F0E442"), name="Haplogroup") + 
   theme(legend.position = "right") -> pBratsk.3
 pBratsk.3
-ggsave("Bratsk_both_pies.svg", width = 20, height = 20, units="cm")
+#ggsave("Bratsk_both_pies.svg", width = 20, height = 20, units="cm")
 #ggsave("Bratsk_both_pies.png", width = 5, height = 5)
-png("Bratsk_both_pies.png", width=20, height=20, units="cm", res=300); print(pBratsk.3); dev.off()
+#png("Bratsk_both_pies.png", width=20, height=20, units="cm", res=300); print(pBratsk.3); dev.off()
 
+library(ggpubr)
+
+graphwidths <- c(1/(upperbox[2]-upperbox[1]), 1/(irkbox[2]-irkbox[1]), 1/(bratskbox[2]-bratskbox[1]))
+
+#svg("all_maps_pies_terrain_bg.svg", width = 10, height = 7)
+ggarrange(pUpper.3 + theme(legend.position='none'), 
+          pIrkMap.4 + theme(legend.position = 'none') + ylab("") + ggtitle("Irkutsk"), 
+          pBratsk.3+ylab("") + theme(legend.position = 'none') + ggtitle("Bratsk"), 
+          common.legend = TRUE,
+          nrow = 1, widths = c(1.11, 1.42, 1))
+#dev.off()
+#ggsave("all_maps_pies_terrain.svg", width = 25, height = 15, units = "cm")
+#ggsave("all_maps_pies_terrain_bg.svg", width = 25, height = 15, units = "cm")
