@@ -26,7 +26,7 @@ tree1 +
   geom_hilight(node=18, fill="#F0E442") + ## western
   geom_hilight(node=20, fill="#D81B60") + ## eastern
   geom_hilight(node=15, fill="#228B22")+ 
-  geom_range("length_0.95_HPD", color="#8b8ef8", size=2, alpha=.5) + 
+  geom_range("length_0.95_HPD", color="darkgrey", size=2, alpha=.5) +  ## purple was #8b8ef8
 #  geom_text2(aes(label=round(as.numeric(posterior), 2), 
 #                 subset=as.numeric(posterior)> 0.7, 
 #                 x=branch), vjust=0, hjust = 0, color = "grey") + 
