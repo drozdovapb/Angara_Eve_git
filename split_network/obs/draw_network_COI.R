@@ -53,5 +53,47 @@ legend("bottomleft", border = FALSE, bty = "n" , cex = 1.2, pch=21,
 legend("bottomright", border = FALSE, bty = "n" , cex = 1.2,
        title = "Location: ",
        legend = c("Angara river", "Lake Baikal"), pch=c(21, 22))
-
 dev.off()
+
+
+## Option 2
+
+library("phangorn")
+library(tanggle)
+## read the data = nexus file recorded with SplitsTree4 (!)
+Nnet <- read.nexus.networx("COI.nex")
+
+Nnet$edge.length <- Nnet$edge.length*467
+
+pn <- 
+  ggsplitnet(Nnet, col="black") + 
+  geom_treescale(x=-.04, y=-.035, offset=.001)#+ 
+#  geom_tiplab2() + 
+#  geom_point(aes(shape="21", color=isTip), size=2)
+
+tips <- pn$data[pn$data$isTip, ]
+tips$group <- sapply(tips$label, function(x) strsplit(x, split = "_")[[1]][3])
+tips$group[which(is.na(tips$group))] <- "out"
+
+
+library(dplyr)
+tips %>% count(x, y, group) -> tips.occur
+
+tips$place <- sapply(tips$label, function(x) strsplit(x, split = "_")[[1]][1])
+tips$place <- ifelse(tips$place == "E" | tips$place == "Evi", "Baikal", "Angara")
+
+tips %>% count(x, y, group, place) -> tips.occur
+tips.occur <- tips.occur[order(tips.occur$n), ]
+
+pn + 
+  geom_point(data = tips.occur, aes(x=x, y=y, color = place, fill=group, shape=place), size=6) + 
+  scale_fill_manual(values = c("#66BB3C", "#D81B60", "grey50", "#4477AA", "#F0E442"), 
+                    name="Haplogroup") +
+  scale_color_manual(values=c("white", "black"), name = "Place") + 
+  #  scale_color_manual(values = c("#66BB3C", "#D81B60", "grey50", "#4477AA", "#F0E442"), 
+  #                    name="Haplogroup") +
+  scale_shape_manual(values = c(21, 22), name = "Place") +
+  guides(fill = guide_legend(override.aes=list(shape=21)),
+         color = guide_legend(override.aes=list(col="black"))) + 
+  theme(legend.position = "left")
+
