@@ -163,7 +163,7 @@ addSpotsAndLegend(pIrkMap.test3, uniqSpots, coiSpots.cropped)-> pIrkMap.4
 pIrkMap.4
 ## ggsave fonts look weird :(
 #ggsave("Irk_both_pies.png", width = 20, height = 20, units = "cm", device=ragg::agg_png)
-png("Fig3_Irk_both_pies.png", width=15, height=15, units="cm", res=300); print(pIrkMap.4); dev.off()
+png("Fig4_Irk_both_pies.png", width=15, height=15, units="cm", res=300); print(pIrkMap.4); dev.off()
 
 ## Angara before Irkutsk ("upper")
 mapwidth <- upperbox["right"]-upperbox["left"]
@@ -179,7 +179,7 @@ addSpotsAndLegend(pUpper.3, uniqSpots, coiSpots) -> pUpper.4
 pUpper.4
 #ggsave("Upper_both_pies.svg", width = 20, height = 20, units="cm")
 #ggsave("Upper_both_pies.png", width = 5, height = 5)
-png("Fig4_Upper_both_pies.png", width=15, height=15, units="cm", res=300); print(pUpper.4); dev.off()
+png("Fig3_Upper_both_pies.png", width=15, height=15, units="cm", res=300); print(pUpper.4); dev.off()
 
 ## add pies to the Bratsk map
 mapwidth <- bratskbox["right"]-bratskbox["left"]
