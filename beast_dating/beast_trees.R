@@ -19,8 +19,6 @@ ggtree(beast_tree) + geom_text(aes(label=node), col = "red") + geom_tiplab() + e
 tree1 <- ggtree(beast_tree) + theme_tree2()
 tree1 <- revts(tree1)
 
-#svg("mrca_tree.svg", width=5, height=6)
-#png("mrca_tree.png", width=6, height=6, units="in", res=300)
 tree1 + 
   geom_hilight(node=19, fill="#4477AA") + ## southern
   geom_hilight(node=18, fill="#F0E442") + ## western
@@ -34,7 +32,12 @@ tree1 +
   scale_color_manual(values = c("NA", "black"), guide = 'none')  + 
   geom_text(aes(label = round(height, 1), color = MRCAtextcolor), nudge_x = -.2, nudge_y = .15) + 
   geom_tiplab(align=FALSE, linetype='dashed', linesize=.3) + 
-  theme(axis.text.x = element_text(size=12)) + xlab("mya")
-#dev.off()                    
-ggsave("mrca_tree.svg", width = 6, height = 6)
-ggsave("mrca_tree.png", width = 6, height = 6)
+  theme(axis.text.x = element_text(size=12)) + xlab("mya") -> mrca_tree
+mrca_tree
+
+#svg("mrca_tree.svg", width=5, height=6)
+png("mrca_tree.png", width=6, height=6, units="in", res=300)
+mrca_tree
+dev.off()                    
+#ggsave("mrca_tree.svg", width = 6, height = 6)
+#ggsave("mrca_tree.png", width = 6, height = 6)
