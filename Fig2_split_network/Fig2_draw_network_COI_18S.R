@@ -1,11 +1,15 @@
 library("phangorn")
+library("tanggle")
 
 ## read the data = nexus file recorded with SplitsTree4 (!)
-network <- read.nexus.networx("COI.nex")
+network <- read.nexus.networx("../data/COI.nex")
 
+## this just reproduces the network produced in SplitsTree4
 plot(network, type="2D", show.tip.label=TRUE, show.node.label=TRUE,
      edge.width=0.5, cex=0.5, scale.bar = 1)#, tip.color=adjustcolor(lvc, alpha.f=0.75))
 
+
+## 
 ## assign groups by shape
 ## unicode shapes
   ## https://www.fileformat.info/info/unicode/block/geometric_shapes/list.htm
@@ -33,33 +37,30 @@ color.group[network$translate$node[these.S]] <- "#4477AA"
 these.A <- which(group == "A")
 color.group[network$translate$node[these.A]] <- "#228b22"
 ## set color for E
-these.E <- which(group == "E")
-color.group[network$translate$node[these.E]] <- "#D81B60"
-## set color for Evi
-these.Evi <- grep("Evi", network$translate$label, fixed=TRUE)
-color.group[network$translate$node[these.Evi]] <- "grey50"
+#these.E <- which(group == "E")
+#color.group[network$translate$node[these.E]] <- "#D81B60"
+### set color for Evi
+#these.Evi <- grep("Evi", network$translate$label, fixed=TRUE)
+#color.group[network$translate$node[these.Evi]] <- "grey50"
 
 ## save the figure
 #svg(filename = "split_network_COI.svg", width = 5, height = 5) ## svg counts in inches
-png(filename = "split_network_COI.png", width = 20, height = 15, units = "cm", res=300)
-par(mar=c(0, 0, 0, 0))
-plot(network, type="2D", show.tip.label=FALSE, show.node.label=TRUE, node.label=shape.group, 
-     edge.width=0.5, cex=1, tip.color=adjustcolor(color.group, alpha.f=0.75))
-legend("bottomleft", border = FALSE, bty = "n" , cex = 1.2, pch=21,
-       title = "Haplogroup:",
-       legend = c("Angara", "Western", "Southern", "Eastern", "outgroup"),
-       col = c("#228b22", "#F0E442", "#4477AA", "#D81B60", "grey50"),
-       pt.bg = c("#228b22", "#F0E442", "#4477AA", "#D81B60", "grey50"))
-legend("bottomright", border = FALSE, bty = "n" , cex = 1.2,
-       title = "Location: ",
-       legend = c("Angara river", "Lake Baikal"), pch=c(21, 22))
-dev.off()
+#png(filename = "split_network_COI.png", width = 20, height = 15, units = "cm", res=300)
+#par(mar=c(0, 0, 0, 0))
+#plot(network, type="2D", show.tip.label=FALSE, show.node.label=TRUE, node.label=shape.group, 
+#     edge.width=0.5, cex=1, tip.color=adjustcolor(color.group, alpha.f=0.75))
+#legend("bottomleft", border = FALSE, bty = "n" , cex = 1.2, pch=21,
+#       title = "Haplogroup:",
+#       legend = c("Angara", "Western", "Southern", "Eastern", "outgroup"),
+#       col = c("#228b22", "#F0E442", "#4477AA", "#D81B60", "grey50"),
+#       pt.bg = c("#228b22", "#F0E442", "#4477AA", "#D81B60", "grey50"))
+#legend("bottomright", border = FALSE, bty = "n" , cex = 1.2,
+#       title = "Location: ",
+#       legend = c("Angara river", "Lake Baikal"), pch=c(21, 22))
+#dev.off()
 
 
 ## Option 2
-
-library("phangorn")
-library(tanggle)
 ## read the data = nexus file recorded with SplitsTree4 (!)
 Nnet <- read.nexus.networx("COI.nex")
 
