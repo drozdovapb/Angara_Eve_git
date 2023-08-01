@@ -12,14 +12,14 @@ library(scales) ##for pretty breaks
 
 
 ## useful in-house functions to make pies
-construct_pie_list <- function(pie_data_COI, coord_box, size, adj.col) {
-  lapply(1:length(unique(pie_data_COI$coordinate)), function(x) 
-    if (coord_box[1] < pie_data_COI[x, "lon"] & pie_data_COI[x, "lon"] < coord_box[2]) {
+construct_pie_list <- function(pie_data_haplogroup, coord_box, size, adj.col) {
+  lapply(1:length(unique(pie_data_haplogroup$coordinate)), function(x) 
+    if (coord_box[1] < pie_data_haplogroup[x, "lon"] & pie_data_haplogroup[x, "lon"] < coord_box[2]) {
       inset(pie.testplot_list[[x]], 
-            xmin = pie_data_COI[x, "lon"] - size + pie_data_COI[x, adj.col],
-            xmax = pie_data_COI[x, "lon"] + size + pie_data_COI[x, adj.col],
-            ymin = pie_data_COI[x, "lat"] - size,
-            ymax = pie_data_COI[x, "lat"] + size)}) 
+            xmin = pie_data_haplogroup[x, "lon"] - size + pie_data_haplogroup[x, adj.col],
+            xmax = pie_data_haplogroup[x, "lon"] + size + pie_data_haplogroup[x, adj.col],
+            ymin = pie_data_haplogroup[x, "lat"] - size,
+            ymax = pie_data_haplogroup[x, "lat"] + size)}) 
 }
 
 ## ggplot theme
@@ -42,22 +42,21 @@ coord_data$lat <- lat; coord_data$lon <- lon
 
 ## reformat data, count haplogroups, and prepare pies
 #####
-gather(coord_data[,c("coordinate", "spot", "coast", "lat", "lon", "COI")], key, value, -c(lat, lon, coordinate, coast, spot)) %>% 
+gather(coord_data[,c("coordinate", "spot", "coast", "lat", "lon", "haplogroup")], key, value, -c(lat, lon, coordinate, coast, spot)) %>% 
   count(coordinate, spot, coast, lat, lon, key, value) %>% 
-  spread(value, n, fill = 0) -> pie_data_COI
-#pie_data_COI
-## melt data to plot
-pie_data_COIm <- melt(pie_data_COI, measure.vars = list("A", "S", "W"))
+  spread(value, n, fill = 0) -> pie_data_haplogroup
+## pie_data_haplogroup: melt data to plot
+pie_data_haplogroupm <- melt(pie_data_haplogroup, measure.vars = list("A", "S", "W"))
 ## decide how much to adjust coordinate for the pies
-pie_data_COI$adjust.B <- ifelse(pie_data_COI$coast=="right coast", 0.015, -0.015)
-pie_data_COI$adjust.Irk <- ifelse(pie_data_COI$coast=="right coast", 0.005, -0.005)
-pie_data_COI$adjust.U <- ifelse(pie_data_COI$coast=="right coast", 0.015, -0.015)
+pie_data_haplogroup$adjust.B <- ifelse(pie_data_haplogroup$coast=="right coast", 0.015, -0.015)
+pie_data_haplogroup$adjust.Irk <- ifelse(pie_data_haplogroup$coast=="right coast", 0.005, -0.005)
+pie_data_haplogroup$adjust.U <- ifelse(pie_data_haplogroup$coast=="right coast", 0.015, -0.015)
 
 ## these are all pies
 pie.testplot_list <- 
-  lapply(unique(pie_data_COI$coordinate), function(x) { 
+  lapply(unique(pie_data_haplogroup$coordinate), function(x) { 
     gt_plot <- ggplotGrob(
-      ggplot(pie_data_COIm[pie_data_COIm$coordinate == x,])+
+      ggplot(pie_data_haplogroupm[pie_data_haplogroupm$coordinate == x,])+
         geom_bar(aes(x=coordinate, y=value, fill=variable), col='white', #size=.1, #.5, # size=1, 
                  stat='identity') +  ## the bar at the bottom is just for the white border
         geom_bar(aes(x=coordinate, y=value, fill=variable), col='NA', 
@@ -96,7 +95,7 @@ pIrkMap
 
 
 ## Angara map upstream of Irkutsk
-upperbox <- c(left=104.45, right=105.05, bottom=51.75, top=52.15)
+upperbox <- c(left=104.25, right=105.05, bottom=51.75, top=52.2)
 #UpperMap <- get_stamenmap(upperbox, zoom=11, maptype = "terrain") 
 UpperMap <- get_stamenmap(upperbox, zoom=11, maptype = "terrain-background") ## without the Cyrillic label
 pUpper <- ggmap(UpperMap) + 
@@ -133,16 +132,16 @@ pBratsk
 ## deal with spot names
 #####
 coord_data$letter <- coord_data$abbreviation ## replaced with my ideas
-spots <- unique(coord_data[, c("lat", "lon", "letter", "coast", "spot", "COI")])
+spots <- unique(coord_data[, c("lat", "lon", "letter", "coast", "spot", "haplogroup")])
 ## abbreviation=my abbrev, letter=SA's abbreviations
 spots %>% group_by(letter,coast) %>% summarise(lat=mean(lat), lon=mean(lon)) -> uniqSpots
 ## here's another table (haplotype-centered), basically for 
-spots %>% group_by(letter,coast,COI) %>% summarise(lat=mean(lat), lon=mean(lon)) -> coiSpots
-addSpotsAndLegend <- function(plotobj, uniqSpots, coiSpots) {
+spots %>% group_by(letter,coast,haplogroup) %>% summarise(lat=mean(lat), lon=mean(lon)) -> haplogrSpots
+addSpotsAndLegend <- function(plotobj, uniqSpots, haplogrSpots) {
   plotobj + 
   geom_label(data=uniqSpots, aes(x=lon+adjust, y=lat, label = letter), 
              label.padding = unit(0.1, "lines"), alpha=1, label.size=NA) + 
-  geom_point(data=coiSpots, aes(x=lon, y=lat, fill=COI),
+  geom_point(data=haplogrSpots, aes(x=lon, y=lat, fill=haplogroup),
                                  pch=21, alpha=0, size = 8) + 
   scale_fill_manual(values = c("#66BB3C", "#4477AA", "#F0E442"), name="Haplogroup") +
   guides(fill = guide_legend(override.aes=list(shape=21, alpha=1, col="white"))) +
@@ -152,14 +151,14 @@ addSpotsAndLegend <- function(plotobj, uniqSpots, coiSpots) {
 
 ## Irkutsk: combine pies
 mapwidth <- irkbox["right"]-irkbox["left"]
-pie_annotation_list <- construct_pie_list(pie_data_COI, coord_box = irkbox, size=mapwidth/30, adj.col = "adjust.Irk")
+pie_annotation_list <- construct_pie_list(pie_data_haplogroup, coord_box = irkbox, size=mapwidth/30, adj.col = "adjust.Irk")
 ## combine map with pies
 pIrkMap.test3 <- Reduce("+", pie_annotation_list, pIrkMap)
 ## padding of labels
-coiSpots.cropped <- coiSpots[between(coiSpots$lon, irkbox["left"], irkbox["right"]) &
-                                 between(coiSpots$lat, irkbox["bottom"], irkbox["top"]), ]
+haplogrSpots.cropped <- haplogrSpots[between(haplogrSpots$lon, irkbox["left"], irkbox["right"]) &
+                                 between(haplogrSpots$lat, irkbox["bottom"], irkbox["top"]), ]
 uniqSpots$adjust <- ifelse(uniqSpots$coast=="right coast", 0.018, -0.018)
-addSpotsAndLegend(pIrkMap.test3, uniqSpots, coiSpots.cropped)-> pIrkMap.4
+addSpotsAndLegend(pIrkMap.test3, uniqSpots, haplogrSpots.cropped)-> pIrkMap.4
 pIrkMap.4
 ## ggsave fonts look weird :(
 #ggsave("Irk_both_pies.png", width = 20, height = 20, units = "cm", device=ragg::agg_png)
@@ -169,13 +168,15 @@ png("Fig4_Irk_both_pies.png", width=15, height=15, units="cm", res=300); print(p
 mapwidth <- upperbox["right"]-upperbox["left"]
 pUpper -> pUpper.2
 pUpper.2  
-pie_annotation_list <- construct_pie_list(pie_data_COI, coord_box = upperbox, size=mapwidth/30, adj.col = "adjust.U")
+pie_annotation_list <- construct_pie_list(pie_data_haplogroup, coord_box = upperbox, size=mapwidth/30, adj.col = "adjust.U")
 #uniqSpots$lona <- uniqSpots$lon+uniqSpots$adjust.U
 pUpper.3 <- Reduce("+", pie_annotation_list, pUpper)
 #pUpper.2 + geom_text_repel(data=uniqSpots, aes(x=lon, y=lat, label = letter), col = "black")
 ## padding of labels
-uniqSpots$adjust <- ifelse(uniqSpots$coast=="right coast", mapwidth/10, -mapwidth/10)
-addSpotsAndLegend(pUpper.3, uniqSpots, coiSpots) -> pUpper.4
+haplogrSpots.cropped <- haplogrSpots[between(haplogrSpots$lon, upperbox["left"], upperbox["right"]) &
+                                       between(haplogrSpots$lat, upperbox["bottom"], upperbox["top"]), ]
+uniqSpots$adjust <- ifelse(uniqSpots$coast=="right coast", mapwidth/13, -mapwidth/13)
+addSpotsAndLegend(pUpper.3, uniqSpots, haplogrSpots.cropped) -> pUpper.4
 pUpper.4
 #ggsave("Upper_both_pies.svg", width = 20, height = 20, units="cm")
 #ggsave("Upper_both_pies.png", width = 5, height = 5)
@@ -183,14 +184,14 @@ png("Fig3_Upper_both_pies.png", width=15, height=15, units="cm", res=300); print
 
 ## add pies to the Bratsk map
 mapwidth <- bratskbox["right"]-bratskbox["left"]
-pie_annotation_list <- construct_pie_list(pie_data_COI, coord_box = bratskbox, size=mapwidth/25, adj.col = "adjust.B")
+pie_annotation_list <- construct_pie_list(pie_data_haplogroup, coord_box = bratskbox, size=mapwidth/25, adj.col = "adjust.B")
 #uniqSpots$lona <- uniqSpots$lon+uniqSpots$adjust.B
 pBratsk.2 <- Reduce("+", pie_annotation_list, pBratsk)
 ## padding of labels
 uniqSpots$adjust <- ifelse(uniqSpots$coast=="right coast", mapwidth/10, -mapwidth/10)
-coiSpots.cropped <- coiSpots[between(coiSpots$lon, bratskbox["left"], bratskbox["right"]) &
-                               between(coiSpots$lat, bratskbox["bottom"], bratskbox["top"]), ]
-addSpotsAndLegend(pBratsk.2, uniqSpots, coiSpots.cropped) -> pBratsk.3
+haplogrSpots.cropped <- haplogrSpots[between(haplogrSpots$lon, bratskbox["left"], bratskbox["right"]) &
+                               between(haplogrSpots$lat, bratskbox["bottom"], bratskbox["top"]), ]
+addSpotsAndLegend(pBratsk.2, uniqSpots, haplogrSpots.cropped) -> pBratsk.3
 ## show the final
 pBratsk.3
 #ggsave("Bratsk_both_pies.svg", width = 20, height = 20, units="cm")
