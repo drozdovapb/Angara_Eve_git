@@ -31,10 +31,10 @@ BaikalMap <- get_stamenmap(bbox, zoom=9, maptype = "terrain")
 
 pBaikalMap <- 
 ggmap(BaikalMap) + xlab("Longitude") + ylab("Latitude") + 
-  geom_rect(mapping=aes(xmin=104.45, xmax=105.05, ymin=51.75, ymax=52.15), fill='NA', color="black") + 
-  geom_rect(mapping=aes(xmin=101.50, xmax=102.10, ymin=56.00, ymax=56.35), fill='NA', color="black") + 
+#  geom_rect(mapping=aes(xmin=104.25, xmax=105.05, ymin=51.75, ymax=52.2), fill='NA', color="black") + 
+#  geom_rect(mapping=aes(xmin=101.50, xmax=102.10, ymin=56.00, ymax=56.35), fill='NA', color="black") + 
   geom_point(data = coord_data, aes(x = lon, y = lat), alpha = .3, size = 5, col = "red", shape = '\U2691') +
-  geom_rect(mapping=aes(xmin=104.19, xmax=104.41, ymin=52.18, ymax=52.32), fill='NA', color="black") + #irk
+#  geom_rect(mapping=aes(xmin=104.19, xmax=104.41, ymin=52.18, ymax=52.32), fill='NA', color="black") + #irk
   theme_classic(base_size = 16) + theme(panel.border = element_rect(colour = "black", fill=NA, size=1))
 
 pBaikalMap

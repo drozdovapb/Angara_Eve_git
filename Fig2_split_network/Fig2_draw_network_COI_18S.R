@@ -62,13 +62,13 @@ color.group[network$translate$node[these.A]] <- "#228b22"
 
 ## Option 2
 ## read the data = nexus file recorded with SplitsTree4 (!)
-Nnet <- read.nexus.networx("COI.nex")
+Nnet <- read.nexus.networx("../data/COI.nex")
 
 Nnet$edge.length <- Nnet$edge.length*467
 
 pn <- 
   ggsplitnet(Nnet, col="black") + 
-  geom_treescale(x=-.04, y=-.035, offset=.001) + 
+  geom_treescale(x=-.04, y=.035, offset=.001) + 
   coord_fixed()
 #  geom_tiplab2() + 
 #  geom_point(aes(shape="21", color=isTip), size=2)
@@ -106,7 +106,7 @@ library(tanggle)
 library(dplyr) ## for some data rearrangement
 
 ## read the data = nexus file recorded with SplitsTree4 (!)
-network <- read.nexus.networx("18S.nex")
+network <- read.nexus.networx("../data/18S.nex")
 
 ### this is for base R plotting with Unicode symbols
 ### works but there are some troubles
