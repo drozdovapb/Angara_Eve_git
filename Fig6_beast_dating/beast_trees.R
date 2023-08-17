@@ -37,8 +37,8 @@ tree1 +
   theme(axis.text.x = element_text(size=12)) + xlab("mya") -> mrca_tree
 mrca_tree
 
-#svg("mrca_tree.svg", width=5, height=6)
-png("mrca_tree.png", width=12, height=6, units="in", res=300)
+svg("mrca_tree.svg", width=12, height=6)
+#png("mrca_tree.png", width=12, height=6, units="in", res=300)
 mrca_tree
 dev.off()                    
 #ggsave("mrca_tree.svg", width = 6, height = 6)

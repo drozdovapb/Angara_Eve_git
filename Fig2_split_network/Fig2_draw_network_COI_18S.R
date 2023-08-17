@@ -203,3 +203,8 @@ png("Figure_2.png", width = 20, height = 10, res=600, units="cm")
 ggarrange(pnCOI+theme(legend.position = "none"), pn18S, 
           labels = c("A", "B"))
 dev.off()
+
+svg("Figure_2.svg", width = 7.87, height = 3.94)
+ggarrange(pnCOI+theme(legend.position = "none"), pn18S, 
+          labels = c("A", "B"))
+dev.off()
