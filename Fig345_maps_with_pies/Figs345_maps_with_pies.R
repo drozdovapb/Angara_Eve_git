@@ -14,7 +14,8 @@ library(scales) ##for pretty breaks
 ## useful in-house functions to make pies
 construct_pie_list <- function(pie_data_haplogroup, coord_box, size, adj.col) {
   lapply(1:length(unique(pie_data_haplogroup$coordinate)), function(x) 
-    if (coord_box[1] < pie_data_haplogroup[x, "lon"] & pie_data_haplogroup[x, "lon"] < coord_box[2]) {
+    if (between(pie_data_haplogroup[x, "lon"],  coord_box[1], coord_box[2]) & 
+        between(pie_data_haplogroup[x, "lat"],  coord_box[3], coord_box[4])) {
       inset(pie.testplot_list[[x]], 
             xmin = pie_data_haplogroup[x, "lon"] - size + pie_data_haplogroup[x, adj.col],
             xmax = pie_data_haplogroup[x, "lon"] + size + pie_data_haplogroup[x, adj.col],
