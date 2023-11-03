@@ -1,0 +1,3 @@
+iqtree2 -s 18S_wEvi.aln -bb 1000 -abayes -o Evi_Listv --redo
+
+

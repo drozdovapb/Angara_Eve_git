@@ -1,0 +1,483 @@
+IQ-TREE multicore version 2.0.7 for Linux 64-bit built Jan 21 2022
+Developed by Bui Quang Minh, Nguyen Lam Tung, Olga Chernomor,
+Heiko Schmidt, Dominik Schrempf, Michael Woodhams.
+
+Host:    drozdovapb-HP-17-by1xxx (AVX2, FMA3, 11 GB RAM)
+Command: iqtree2 -s COI_wEvi.fa -bb 1000 -abayes -o Evi_Listv
+Seed:    145293 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Wed Nov  1 12:24:28 2023
+Kernel:  AVX+FMA - 1 threads (8 CPU cores detected)
+
+HINT: Use -nt option to specify number of threads because your CPU has 8 cores!
+HINT: -nt AUTO will automatically determine the best number of threads to use.
+
+Reading alignment file COI_wEvi.fa ... Fasta format detected
+Alignment most likely contains DNA/RNA sequences
+Alignment has 156 sequences with 523 columns, 136 distinct patterns
+116 parsimony-informative, 35 singleton sites, 372 constant sites
+                    Gap/Ambiguity  Composition  p-value
+   1  A7_BL_A               0.00%    passed     98.11%
+   2  A9_BL_A               0.00%    passed     98.11%
+   3  A10_BL_A              0.00%    passed     98.11%
+   4  A13_BL_A              0.00%    passed     98.11%
+   5  A33_So_A              0.00%    passed     94.96%
+   6  A34_So_A              0.00%    passed     89.94%
+   7  A35_So_A              0.00%    passed     92.81%
+   8  A36_So_A              0.00%    passed     92.81%
+   9  A38_So_A              0.00%    passed     98.11%
+  10  A39_So_A              0.00%    passed     98.11%
+  11  A56_To_A              0.00%    passed     96.37%
+  12  A85_Vn_A              0.00%    passed     98.11%
+  13  A86_Vn_A              0.00%    passed     98.11%
+  14  A87_Vn_A              0.00%    passed     98.28%
+  15  A88_Vn_A              0.00%    passed     98.11%
+  16  A89_Vn_A              0.00%    passed     98.11%
+  17  A93_Vn_A              0.00%    passed     98.11%
+  18  A95_Vn_A              0.00%    passed     98.11%
+  19  A96_Vn_A              0.00%    passed     92.81%
+  20  A99_Vn_A              0.00%    passed     98.11%
+  21  A100_Vn_A             0.00%    passed     92.81%
+  22  A107_Ya_A             0.00%    passed     98.11%
+  23  A108_Ya_A             0.00%    passed     92.81%
+  24  A109_Ya_A             0.00%    passed     92.81%
+  25  A110_Ya_A             0.00%    passed     92.81%
+  26  A111_Ya_A             0.00%    passed     98.60%
+  27  E1_AR_S               0.00%    passed     98.74%
+  28  E2_AR_S               0.00%    passed     95.69%
+  29  E3_AR_S               0.00%    passed     95.69%
+  30  E4_AR_S               0.00%    passed     97.58%
+  31  E5_AR_S               0.00%    passed     94.50%
+  32  E6_AR_S               0.00%    passed     95.69%
+  33  E24_AR_S              0.00%    passed     92.91%
+  34  E25_AR_S              0.00%    passed     95.69%
+  35  E26_AR_S              0.00%    passed     97.82%
+  36  E27_AR_S              0.00%    passed     94.50%
+  37  E28_BR_S              0.00%    passed     89.54%
+  38  E32_GR_S              0.00%    passed     95.69%
+  39  E33_GR_A              0.00%    passed     98.88%
+  40  E34_GR_S              0.00%    passed     94.95%
+  41  E35_GR_S              0.00%    passed     94.02%
+  42  E36_GR_S              0.00%    passed     96.16%
+  43  E37_GR_S              0.00%    passed     97.98%
+  44  E38_GR_S              0.00%    passed     88.81%
+  45  E61_GR_S              0.00%    passed     88.81%
+  46  E62_GR_S              0.00%    passed     93.41%
+  47  E63_GR_S              0.00%    passed     89.20%
+  48  E64_GL_S              0.00%    passed     96.48%
+  49  E65_GL_S              0.00%    passed     97.98%
+  50  E66_GL_S              0.00%    passed     96.48%
+  51  E67_GL_S              0.00%    passed     95.69%
+  52  E72_GL_S              0.00%    passed     94.50%
+  53  E73_GL_S              0.00%    passed     92.51%
+  54  E85_GL_S              0.00%    passed     94.50%
+  55  E86_GL_S              0.00%    passed     97.82%
+  56  E99_GL_S              0.00%    passed     97.82%
+  57  E102_GL_S             0.00%    passed     94.50%
+  58  E103_BL_S             0.00%    passed     95.69%
+  59  E104_BL_S             0.00%    passed     90.64%
+  60  E105_BL_S             0.00%    passed     97.07%
+  61  E106_BL_S             0.00%    passed     88.81%
+  62  E107_BL_S             0.00%    passed     94.50%
+  63  E108_AL_S             0.00%    passed     97.17%
+  64  E109_AL_S             0.00%    passed     97.44%
+  65  E111_AL_S             0.00%    passed     95.69%
+  66  E112_AL_S             0.00%    passed     95.69%
+  67  E113_AL_S             0.00%    passed     94.50%
+  68  E138_AL_S             0.00%    passed     95.69%
+  69  E139_AL_S             0.00%    passed     96.48%
+  70  E149_AL_S             0.00%    passed     96.48%
+  71  E150_AL_S             0.00%    passed     95.75%
+  72  E151_AL_S             0.00%    passed     96.16%
+  73  E153_So_A             0.00%    passed     92.81%
+  74  E154_Ya_S             0.00%    passed     88.47%
+  75  E155_Ya_A             0.00%    passed     98.11%
+  76  E156_Ya_S             0.00%    passed     94.72%
+  77  E157_Ya_S             0.00%    passed     92.91%
+  78  E163_To_S             0.00%    passed     98.72%
+  79  E164_To_S             0.00%    passed     94.50%
+  80  E165_To_S             0.00%    passed     94.50%
+  81  E166_To_S             0.00%    passed     95.69%
+  82  E170_To_S             0.00%    passed     95.69%
+  83  E171_To_S             0.00%    passed     96.48%
+  84  E172_To_S             0.00%    passed     96.48%
+  85  E177_To_S             0.00%    passed     97.58%
+  86  E178_To_S             0.00%    passed     97.58%
+  87  E197_To_S             0.00%    passed     96.48%
+  88  E199_Ya_S             0.00%    passed     95.69%
+  89  E200_Ya_S             0.00%    passed     81.59%
+  90  E240_So_A             0.00%    passed     98.60%
+  91  E241_So_A             0.00%    passed     92.81%
+  92  A167_Kr_A             0.00%    passed     98.34%
+  93  A168_Kr_A             0.00%    passed     92.81%
+  94  A169a_Kr_A            0.00%    passed     99.06%
+  95  A169_Kr_A             0.00%    passed     92.81%
+  96  A170_Kr_A             0.00%    passed     92.81%
+  97  A171_Kr_A             0.00%    passed     98.11%
+  98  A172_Kr_A             0.00%    passed     92.81%
+  99  A173_Kr_A             0.00%    passed     98.11%
+ 100  A174_Pa_S             0.00%    passed     97.58%
+ 101  A175_Pa_A             0.00%    passed     92.81%
+ 102  A176_Pa_A             0.00%    passed     92.81%
+ 103  A177_Pa_A             0.00%    passed     92.81%
+ 104  A178_Pa_A             0.00%    passed     92.81%
+ 105  A179_Pa_A             0.00%    passed     98.11%
+ 106  A180_Pa_A             0.00%    passed     92.81%
+ 107  A189_Zy_A             0.00%    passed     92.81%
+ 108  A190_Zy_A             0.00%    passed     92.81%
+ 109  A191_Zy_A             0.00%    passed     98.11%
+ 110  A192_Zy_A             0.00%    passed     92.81%
+ 111  A193_Zy_A             0.00%    passed     92.81%
+ 112  A194_Zy_A             0.00%    passed     92.81%
+ 113  A195_Zy_A             0.00%    passed     92.81%
+ 114  E201_Ko_A             0.00%    passed     98.11%
+ 115  E202_Ko_A             0.00%    passed     92.81%
+ 116  E203_Ko_A             0.00%    passed     97.91%
+ 117  E204_Ko_A             0.00%    passed     92.81%
+ 118  E205_Ko_A             0.00%    passed     98.11%
+ 119  E211_Ni_W             0.00%    passed     99.90%
+ 120  E212_Ni_S             0.00%    passed     94.50%
+ 121  E213_Ni_W             0.00%    passed     99.62%
+ 122  E214_Ni_S             0.00%    passed     94.50%
+ 123  E215_Ni_S             0.00%    passed     95.69%
+ 124  E216_Ni_W             0.00%    passed     99.90%
+ 125  E217_Ni_S             0.00%    passed     95.69%
+ 126  E218_Ni_S             0.00%    passed     96.48%
+ 127  E219_Ni_S             0.00%    passed     96.48%
+ 128  E220_Ni_S             0.00%    passed     94.50%
+ 129  E221_Ko_A             0.00%    passed     98.11%
+ 130  E222_Ko_A             0.00%    passed     92.81%
+ 131  E223_Ko_A             0.00%    passed     92.81%
+ 132  E224_Ko_A             0.00%    passed     92.81%
+ 133  E225_Ko_A             0.00%    passed     98.11%
+ 134  E232_Sh_W             0.00%    passed     99.90%
+ 135  E233_Sh_W             0.00%    passed     99.64%
+ 136  E234_Sh_W             0.00%    passed     99.90%
+ 137  E235_Sh_S             0.00%    passed     95.69%
+ 138  E237_Sh_W             0.00%    passed    100.00%
+ 139  E238_Sh_W             0.00%    passed     99.27%
+ 140  E239_Sh_W             0.00%    passed     98.76%
+ 141  A196_Mp_A             0.00%    passed     92.81%
+ 142  A197_Mp_A             0.00%    passed     90.95%
+ 143  A198_Mp_A             0.00%    passed     98.11%
+ 144  A199_Mp_A             0.00%    passed     92.81%
+ 145  A201_Mp_A             0.00%    passed     92.81%
+ 146  A202_Mp_A             0.00%    passed     92.81%
+ 147  A203_Mp_A             0.00%    passed     92.81%
+ 148  A204_Mp_A             0.00%    passed     92.81%
+ 149  A205_Mp_A             0.00%    passed     98.11%
+ 150  E_Baikalsk_S          0.00%    passed     96.18%
+ 151  E_PB_S                0.00%    passed     88.47%
+ 152  E_Severobaikalsk_W    0.00%    passed     96.81%
+ 153  E_Warnachka_W         0.00%    passed     99.90%
+ 154  E_SvyatoyNos_E        0.00%    passed     95.81%
+ 155  E_SvyatoyNos_E_0      0.00%    passed     97.47%
+ 156  Evi_Listv             0.00%    passed     98.58%
+****  TOTAL                 0.00%  0 sequences failed composition chi2 test (p-value<5%; df=3)
+NOTE: A9_BL_A is identical to A7_BL_A but kept for subsequent analysis
+NOTE: A36_So_A is identical to A35_So_A but kept for subsequent analysis
+NOTE: E3_AR_S is identical to E2_AR_S but kept for subsequent analysis
+NOTE: E27_AR_S is identical to E5_AR_S but kept for subsequent analysis
+NOTE: E32_GR_S is identical to E25_AR_S but kept for subsequent analysis
+NOTE: E86_GL_S is identical to E26_AR_S but kept for subsequent analysis
+NOTE: E151_AL_S is identical to E36_GR_S but kept for subsequent analysis
+NOTE: E65_GL_S is identical to E37_GR_S but kept for subsequent analysis
+NOTE: E61_GR_S is identical to E38_GR_S but kept for subsequent analysis
+NOTE: E66_GL_S is identical to E64_GL_S but kept for subsequent analysis
+NOTE: E_PB_S is identical to E154_Ya_S but kept for subsequent analysis
+NOTE: E_Warnachka_W is identical to E234_Sh_W but kept for subsequent analysis
+NOTE: 84 identical sequences (see below) will be ignored for subsequent analysis
+NOTE: A10_BL_A (identical to A7_BL_A) is ignored but added at the end
+NOTE: A13_BL_A (identical to A7_BL_A) is ignored but added at the end
+NOTE: A38_So_A (identical to A7_BL_A) is ignored but added at the end
+NOTE: A39_So_A (identical to A7_BL_A) is ignored but added at the end
+NOTE: A85_Vn_A (identical to A7_BL_A) is ignored but added at the end
+NOTE: A86_Vn_A (identical to A7_BL_A) is ignored but added at the end
+NOTE: A88_Vn_A (identical to A7_BL_A) is ignored but added at the end
+NOTE: A89_Vn_A (identical to A7_BL_A) is ignored but added at the end
+NOTE: A93_Vn_A (identical to A7_BL_A) is ignored but added at the end
+NOTE: A95_Vn_A (identical to A7_BL_A) is ignored but added at the end
+NOTE: A99_Vn_A (identical to A7_BL_A) is ignored but added at the end
+NOTE: A107_Ya_A (identical to A7_BL_A) is ignored but added at the end
+NOTE: E155_Ya_A (identical to A7_BL_A) is ignored but added at the end
+NOTE: A171_Kr_A (identical to A7_BL_A) is ignored but added at the end
+NOTE: A173_Kr_A (identical to A7_BL_A) is ignored but added at the end
+NOTE: A179_Pa_A (identical to A7_BL_A) is ignored but added at the end
+NOTE: A191_Zy_A (identical to A7_BL_A) is ignored but added at the end
+NOTE: E201_Ko_A (identical to A7_BL_A) is ignored but added at the end
+NOTE: E205_Ko_A (identical to A7_BL_A) is ignored but added at the end
+NOTE: E221_Ko_A (identical to A7_BL_A) is ignored but added at the end
+NOTE: E225_Ko_A (identical to A7_BL_A) is ignored but added at the end
+NOTE: A198_Mp_A (identical to A7_BL_A) is ignored but added at the end
+NOTE: A205_Mp_A (identical to A7_BL_A) is ignored but added at the end
+NOTE: A96_Vn_A (identical to A35_So_A) is ignored but added at the end
+NOTE: A100_Vn_A (identical to A35_So_A) is ignored but added at the end
+NOTE: A108_Ya_A (identical to A35_So_A) is ignored but added at the end
+NOTE: A109_Ya_A (identical to A35_So_A) is ignored but added at the end
+NOTE: A110_Ya_A (identical to A35_So_A) is ignored but added at the end
+NOTE: E153_So_A (identical to A35_So_A) is ignored but added at the end
+NOTE: E241_So_A (identical to A35_So_A) is ignored but added at the end
+NOTE: A168_Kr_A (identical to A35_So_A) is ignored but added at the end
+NOTE: A169_Kr_A (identical to A35_So_A) is ignored but added at the end
+NOTE: A170_Kr_A (identical to A35_So_A) is ignored but added at the end
+NOTE: A172_Kr_A (identical to A35_So_A) is ignored but added at the end
+NOTE: A175_Pa_A (identical to A35_So_A) is ignored but added at the end
+NOTE: A176_Pa_A (identical to A35_So_A) is ignored but added at the end
+NOTE: A177_Pa_A (identical to A35_So_A) is ignored but added at the end
+NOTE: A178_Pa_A (identical to A35_So_A) is ignored but added at the end
+NOTE: A180_Pa_A (identical to A35_So_A) is ignored but added at the end
+NOTE: A189_Zy_A (identical to A35_So_A) is ignored but added at the end
+NOTE: A190_Zy_A (identical to A35_So_A) is ignored but added at the end
+NOTE: A192_Zy_A (identical to A35_So_A) is ignored but added at the end
+NOTE: A193_Zy_A (identical to A35_So_A) is ignored but added at the end
+NOTE: A194_Zy_A (identical to A35_So_A) is ignored but added at the end
+NOTE: A195_Zy_A (identical to A35_So_A) is ignored but added at the end
+NOTE: E202_Ko_A (identical to A35_So_A) is ignored but added at the end
+NOTE: E204_Ko_A (identical to A35_So_A) is ignored but added at the end
+NOTE: E222_Ko_A (identical to A35_So_A) is ignored but added at the end
+NOTE: E223_Ko_A (identical to A35_So_A) is ignored but added at the end
+NOTE: E224_Ko_A (identical to A35_So_A) is ignored but added at the end
+NOTE: A196_Mp_A (identical to A35_So_A) is ignored but added at the end
+NOTE: A199_Mp_A (identical to A35_So_A) is ignored but added at the end
+NOTE: A201_Mp_A (identical to A35_So_A) is ignored but added at the end
+NOTE: A202_Mp_A (identical to A35_So_A) is ignored but added at the end
+NOTE: A203_Mp_A (identical to A35_So_A) is ignored but added at the end
+NOTE: A204_Mp_A (identical to A35_So_A) is ignored but added at the end
+NOTE: E6_AR_S (identical to E2_AR_S) is ignored but added at the end
+NOTE: E111_AL_S (identical to E2_AR_S) is ignored but added at the end
+NOTE: E199_Ya_S (identical to E2_AR_S) is ignored but added at the end
+NOTE: E215_Ni_S (identical to E2_AR_S) is ignored but added at the end
+NOTE: E235_Sh_S (identical to E2_AR_S) is ignored but added at the end
+NOTE: E72_GL_S (identical to E5_AR_S) is ignored but added at the end
+NOTE: E85_GL_S (identical to E5_AR_S) is ignored but added at the end
+NOTE: E102_GL_S (identical to E5_AR_S) is ignored but added at the end
+NOTE: E113_AL_S (identical to E5_AR_S) is ignored but added at the end
+NOTE: E164_To_S (identical to E5_AR_S) is ignored but added at the end
+NOTE: E165_To_S (identical to E5_AR_S) is ignored but added at the end
+NOTE: E212_Ni_S (identical to E5_AR_S) is ignored but added at the end
+NOTE: E214_Ni_S (identical to E5_AR_S) is ignored but added at the end
+NOTE: E220_Ni_S (identical to E5_AR_S) is ignored but added at the end
+NOTE: E67_GL_S (identical to E25_AR_S) is ignored but added at the end
+NOTE: E103_BL_S (identical to E25_AR_S) is ignored but added at the end
+NOTE: E112_AL_S (identical to E25_AR_S) is ignored but added at the end
+NOTE: E138_AL_S (identical to E25_AR_S) is ignored but added at the end
+NOTE: E170_To_S (identical to E25_AR_S) is ignored but added at the end
+NOTE: E217_Ni_S (identical to E25_AR_S) is ignored but added at the end
+NOTE: E99_GL_S (identical to E26_AR_S) is ignored but added at the end
+NOTE: E106_BL_S (identical to E38_GR_S) is ignored but added at the end
+NOTE: E139_AL_S (identical to E64_GL_S) is ignored but added at the end
+NOTE: E149_AL_S (identical to E64_GL_S) is ignored but added at the end
+NOTE: E172_To_S (identical to E64_GL_S) is ignored but added at the end
+NOTE: E197_To_S (identical to E64_GL_S) is ignored but added at the end
+NOTE: E218_Ni_S (identical to E64_GL_S) is ignored but added at the end
+NOTE: E219_Ni_S (identical to E64_GL_S) is ignored but added at the end
+Alignment was printed to COI_wEvi.fa.uniqueseq.phy
+
+For your convenience alignment with unique sequences printed to COI_wEvi.fa.uniqueseq.phy
+
+
+Create initial parsimony tree by phylogenetic likelihood library (PLL)... 0.003 seconds
+Perform fast likelihood tree search using GTR+I+G model...
+Estimate model parameters (epsilon = 5.000)
+Perform nearest neighbor interchange...
+Estimate model parameters (epsilon = 1.000)
+1. Initial log-likelihood: -2313.049
+Optimal log-likelihood: -2313.036
+Rate parameters:  A-C: 2.23300  A-G: 14.62154  A-T: 2.00959  C-G: 3.11217  C-T: 15.48305  G-T: 1.00000
+Base frequencies:  A: 0.254  C: 0.189  G: 0.191  T: 0.366
+Proportion of invariable sites: 0.344
+Gamma shape alpha: 0.385
+Parameters optimization took 1 rounds (0.009 sec)
+Time for fast ML tree search: 0.192 seconds
+
+NOTE: ModelFinder requires 3 MB RAM!
+ModelFinder will test up to 286 DNA models (sample size: 523) ...
+ No. Model         -LnL         df  AIC          AICc         BIC
+  1  GTR+F         2452.296     149 5202.592     5322.431     5837.270
+  2  GTR+F+I       2321.771     150 4943.543     5065.317     5582.480
+  3  GTR+F+G4      2313.956     150 4927.913     5049.687     5566.850
+  4  GTR+F+I+G4    2313.042     151 4928.083     5051.814     5571.280
+  5  GTR+F+R2      2318.981     151 4939.961     5063.692     5583.158
+  6  GTR+F+R3      2314.436     153 4934.873     5062.580     5586.589
+ 16  SYM+G4        2342.353     147 4978.705     5094.737     5604.864
+ 17  SYM+I+G4      2341.147     148 4978.294     5096.219     5608.712
+ 29  TVM+F+G4      2313.975     149 4925.951     5045.790     5560.628
+ 30  TVM+F+I+G4    2313.080     150 4926.160     5047.934     5565.097
+ 42  TVMe+G4       2342.698     146 4977.395     5091.555     5599.294
+ 43  TVMe+I+G4     2341.639     147 4977.277     5093.309     5603.436
+ 55  TIM3+F+G4     2315.491     148 4926.983     5044.908     5557.401
+ 56  TIM3+F+I+G4   2314.616     149 4927.233     5047.072     5561.910
+ 68  TIM3e+G4      2345.279     145 4980.557     5092.865     5598.196
+ 69  TIM3e+I+G4    2344.125     146 4980.250     5094.409     5602.149
+ 81  TIM2+F+G4     2316.556     148 4929.112     5047.037     5559.530
+ 82  TIM2+F+I+G4   2315.532     149 4929.065     5048.904     5563.742
+ 94  TIM2e+G4      2343.735     145 4977.469     5089.777     5595.109
+ 95  TIM2e+I+G4    2342.534     146 4977.068     5091.227     5598.967
+107  TIM+F+G4      2315.940     148 4927.880     5045.805     5558.298
+108  TIM+F+I+G4    2314.929     149 4927.858     5047.698     5562.536
+120  TIMe+G4       2343.287     145 4976.574     5088.882     5594.213
+121  TIMe+I+G4     2342.130     146 4976.260     5090.420     5598.159
+133  TPM3u+F+G4    2315.508     147 4925.015     5041.047     5551.174
+134  TPM3u+F+I+G4  2314.654     148 4925.309     5043.234     5555.727
+146  TPM3+F+G4     2315.507     147 4925.014     5041.046     5551.173
+147  TPM3+F+I+G4   2314.655     148 4925.309     5043.234     5555.727
+159  TPM2u+F+G4    2316.573     147 4927.146     5043.178     5553.305
+160  TPM2u+F+I+G4  2315.573     148 4927.146     5045.071     5557.564
+172  TPM2+F+G4     2316.573     147 4927.146     5043.178     5553.305
+173  TPM2+F+I+G4   2315.573     148 4927.146     5045.071     5557.564
+185  K3Pu+F+G4     2315.962     147 4925.924     5041.956     5552.082
+186  K3Pu+F+I+G4   2314.975     148 4925.950     5043.875     5556.368
+198  K3P+G4        2343.642     144 4975.284     5085.761     5588.664
+199  K3P+I+G4      2342.649     145 4975.298     5087.606     5592.937
+211  TN+F+G4       2316.832     147 4927.665     5043.697     5553.823
+212  TN+F+I+G4     2315.875     148 4927.749     5045.674     5558.167
+224  TNe+G4        2345.306     144 4978.613     5089.089     5591.992
+225  TNe+I+G4      2344.158     145 4978.316     5090.624     5595.955
+237  HKY+F+G4      2316.847     146 4925.694     5039.853     5547.592
+238  HKY+F+I+G4    2315.916     147 4925.832     5041.864     5551.990
+250  K2P+G4        2345.634     143 4977.268     5085.933     5586.388
+251  K2P+I+G4      2344.658     144 4977.316     5087.792     5590.695
+263  F81+F+G4      2439.380     145 5168.760     5281.068     5786.399
+264  F81+F+I+G4    2439.208     146 5170.415     5284.575     5792.314
+276  JC+G4         2455.990     142 5195.979     5302.853     5800.840
+277  JC+I+G4       2455.942     143 5197.884     5306.549     5807.004
+Akaike Information Criterion:           TPM3+F+G4
+Corrected Akaike Information Criterion: HKY+F+G4
+Bayesian Information Criterion:         HKY+F+G4
+Best-fit model: HKY+F+G4 chosen according to BIC
+
+All model information printed to COI_wEvi.fa.model.gz
+CPU time for ModelFinder: 1.457 seconds (0h:0m:1s)
+Wall-clock time for ModelFinder: 1.482 seconds (0h:0m:1s)
+Generating 1000 samples for ultrafast bootstrap (seed: 145293)...
+
+NOTE: 1 MB RAM (0 GB) is required!
+Estimate model parameters (epsilon = 0.100)
+1. Initial log-likelihood: -2316.847
+Optimal log-likelihood: -2316.846
+Rate parameters:  A-C: 1.00000  A-G: 7.72088  A-T: 1.00000  C-G: 1.00000  C-T: 7.72088  G-T: 1.00000
+Base frequencies:  A: 0.254  C: 0.189  G: 0.191  T: 0.366
+Gamma shape alpha: 0.184
+Parameters optimization took 1 rounds (0.006 sec)
+Computing ML distances based on estimated model parameters... 0.042 sec
+Computing BIONJ tree...
+0.002 seconds
+Log-likelihood of BIONJ tree: -2320.542
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 98 parsimony trees... 0.266 second
+Computing log-likelihood of 98 initial trees ... 0.222 seconds
+Current best score: -2316.846
+
+Do NNI search on 20 best initial trees
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 1: -2316.846
+BETTER TREE FOUND at iteration 2: -2316.843
+BETTER TREE FOUND at iteration 3: -2316.843
+BETTER TREE FOUND at iteration 5: -2316.843
+Iteration 10 / LogL: -2316.843 / Time: 0h:0m:1s
+Iteration 20 / LogL: -2316.843 / Time: 0h:0m:1s
+Finish initializing candidate tree set (20)
+Current best tree score: -2316.843 / CPU time: 1.552
+Number of iterations: 20
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Iteration 30 / LogL: -2321.784 / Time: 0h:0m:2s (0h:0m:7s left)
+Iteration 40 / LogL: -2316.852 / Time: 0h:0m:3s (0h:0m:6s left)
+Iteration 50 / LogL: -2322.328 / Time: 0h:0m:4s (0h:0m:5s left)
+Log-likelihood cutoff on original alignment: -2339.975
+Iteration 60 / LogL: -2316.849 / Time: 0h:0m:6s (0h:0m:4s left)
+Iteration 70 / LogL: -2316.846 / Time: 0h:0m:7s (0h:0m:3s left)
+Iteration 80 / LogL: -2316.855 / Time: 0h:0m:8s (0h:0m:2s left)
+Iteration 90 / LogL: -2323.229 / Time: 0h:0m:9s (0h:0m:1s left)
+Iteration 100 / LogL: -2317.109 / Time: 0h:0m:10s (0h:0m:0s left)
+Log-likelihood cutoff on original alignment: -2340.280
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.988
+NOTE: UFBoot does not converge, continue at least 100 more iterations
+Iteration 110 / LogL: -2316.850 / Time: 0h:0m:12s (0h:0m:9s left)
+Iteration 120 / LogL: -2316.855 / Time: 0h:0m:13s (0h:0m:9s left)
+Iteration 130 / LogL: -2316.848 / Time: 0h:0m:15s (0h:0m:8s left)
+Iteration 140 / LogL: -2316.848 / Time: 0h:0m:16s (0h:0m:7s left)
+Iteration 150 / LogL: -2316.849 / Time: 0h:0m:18s (0h:0m:6s left)
+Log-likelihood cutoff on original alignment: -2340.187
+Iteration 160 / LogL: -2316.848 / Time: 0h:0m:20s (0h:0m:5s left)
+Iteration 170 / LogL: -2316.853 / Time: 0h:0m:22s (0h:0m:3s left)
+Iteration 180 / LogL: -2337.357 / Time: 0h:0m:23s (0h:0m:2s left)
+Iteration 190 / LogL: -2316.858 / Time: 0h:0m:25s (0h:0m:1s left)
+Iteration 200 / LogL: -2316.851 / Time: 0h:0m:27s (0h:0m:0s left)
+Log-likelihood cutoff on original alignment: -2340.830
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.979
+NOTE: UFBoot does not converge, continue at least 100 more iterations
+Iteration 210 / LogL: -2316.851 / Time: 0h:0m:29s (0h:0m:12s left)
+Iteration 220 / LogL: -2316.852 / Time: 0h:0m:30s (0h:0m:11s left)
+Iteration 230 / LogL: -2316.852 / Time: 0h:0m:32s (0h:0m:9s left)
+Iteration 240 / LogL: -2316.853 / Time: 0h:0m:34s (0h:0m:8s left)
+Iteration 250 / LogL: -2316.850 / Time: 0h:0m:36s (0h:0m:7s left)
+Log-likelihood cutoff on original alignment: -2340.830
+Iteration 260 / LogL: -2321.785 / Time: 0h:0m:38s (0h:0m:5s left)
+Iteration 270 / LogL: -2316.851 / Time: 0h:0m:40s (0h:0m:4s left)
+Iteration 280 / LogL: -2341.218 / Time: 0h:0m:42s (0h:0m:3s left)
+Iteration 290 / LogL: -2316.850 / Time: 0h:0m:44s (0h:0m:1s left)
+Iteration 300 / LogL: -2316.856 / Time: 0h:0m:46s (0h:0m:0s left)
+Log-likelihood cutoff on original alignment: -2341.238
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.984
+NOTE: UFBoot does not converge, continue at least 100 more iterations
+Iteration 310 / LogL: -2316.851 / Time: 0h:0m:48s (0h:0m:14s left)
+Iteration 320 / LogL: -2392.546 / Time: 0h:0m:50s (0h:0m:12s left)
+Iteration 330 / LogL: -2325.452 / Time: 0h:0m:52s (0h:0m:11s left)
+Iteration 340 / LogL: -2316.845 / Time: 0h:0m:54s (0h:0m:9s left)
+Iteration 350 / LogL: -2316.852 / Time: 0h:0m:55s (0h:0m:8s left)
+Log-likelihood cutoff on original alignment: -2341.238
+Iteration 360 / LogL: -2316.847 / Time: 0h:0m:57s (0h:0m:6s left)
+Iteration 370 / LogL: -2316.852 / Time: 0h:1m:0s (0h:0m:4s left)
+Iteration 380 / LogL: -2316.852 / Time: 0h:1m:3s (0h:0m:3s left)
+Iteration 390 / LogL: -2317.378 / Time: 0h:1m:5s (0h:0m:1s left)
+Iteration 400 / LogL: -2328.437 / Time: 0h:1m:7s (0h:0m:0s left)
+Log-likelihood cutoff on original alignment: -2341.238
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.992
+TREE SEARCH COMPLETED AFTER 400 ITERATIONS / Time: 0h:1m:7s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -2316.843
+Optimal log-likelihood: -2316.843
+Rate parameters:  A-C: 1.00000  A-G: 7.72297  A-T: 1.00000  C-G: 1.00000  C-T: 7.72297  G-T: 1.00000
+Base frequencies:  A: 0.254  C: 0.189  G: 0.191  T: 0.366
+Gamma shape alpha: 0.184
+Parameters optimization took 1 rounds (0.013 sec)
+BEST SCORE FOUND : -2316.843
+
+Testing tree branches by aBayes parametric test...
+0.015 sec.
+Creating bootstrap support values...
+Split supports printed to NEXUS file COI_wEvi.fa.splits.nex
+Total tree length: 0.860
+
+Total number of iterations: 400
+CPU time used for tree search: 65.483 sec (0h:1m:5s)
+Wall-clock time used for tree search: 67.637 sec (0h:1m:7s)
+Total CPU time used: 65.837 sec (0h:1m:5s)
+Total wall-clock time used: 68.001 sec (0h:1m:8s)
+
+Computing bootstrap consensus tree...
+Reading input file COI_wEvi.fa.splits.nex...
+72 taxa and 1332 splits.
+Consensus tree written to COI_wEvi.fa.contree
+Reading input trees file COI_wEvi.fa.contree
+Log-likelihood of consensus tree: -2316.908
+
+Analysis results written to: 
+  IQ-TREE report:                COI_wEvi.fa.iqtree
+  Maximum-likelihood tree:       COI_wEvi.fa.treefile
+  Likelihood distances:          COI_wEvi.fa.mldist
+
+Ultrafast bootstrap approximation results written to:
+  Split support values:          COI_wEvi.fa.splits.nex
+  Consensus tree:                COI_wEvi.fa.contree
+  Screen log file:               COI_wEvi.fa.log
+
+Date and Time: Wed Nov  1 12:25:37 2023

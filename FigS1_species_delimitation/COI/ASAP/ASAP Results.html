@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>ASAP Results </title>
+	<style type="text/css" media="all">
+		@import url("/abi/public/asap/asap.css");
+	</style>
+<style>
+    .caption{
+	font-size: 20px;
+	font-family: Georgia, serif;
+    }
+    .tooltip{
+	font-size: 12px;
+   }
+    .tooltip_bg{
+	fill: white;
+	stroke: black;
+	stroke-width: 1;
+	opacity: 0.85;
+   }
+ </style>
+<script language="javascript">
+var red_is_on=0
+var oldy=-1;
+function circle_click(n) {
+		var svgDoc,svg_courbe,lalig;
+      	a_effacer=0;
+		if (oldy!=-1)
+		{
+		svgItemold = document.getElementById("bestline"+oldy);
+		svgItemold.setAttribute("visibility","hidden");
+
+		svgItemjumpold = document.getElementById("bestlinejump"+oldy);
+		svgItemjumpold.setAttribute("visibility","hidden");
+
+      	svg_courbe = document.getElementById("svg1");
+       svgDoc= svg_courbe.contentDocument;
+	    lalig=svgDoc.getElementById("CutDis"+oldy);
+      	lalig.setAttribute("visibility","hidden");
+
+      	svg_courbe = document.getElementById("svg2");
+       svgDoc= svg_courbe.contentDocument;
+	    lalig=svgDoc.getElementById("CutDis"+oldy);
+      	lalig.setAttribute("visibility","hidden");
+      	if (oldy==n)
+      		a_effacer=1;
+		tablig=document.getElementById("row_res"+oldy);
+		tablig.style.backgroundColor="transparent";
+		}
+	svgItem = document.getElementById("bestline"+n);
+	svgItemjump = document.getElementById("bestlinejump"+n);
+   if (a_effacer==0)
+		{svgItem.setAttribute("visibility","visible");
+		svgItemjump.setAttribute("visibility","visible");}
+	svg_courbe = document.getElementById("svg1");
+	svgDoc= svg_courbe.contentDocument;
+	lalig=svgDoc.getElementById("CutDis"+n);
+   if (a_effacer==0)
+		lalig.setAttribute("visibility","visible");
+	svg_courbe = document.getElementById("svg2");
+	svgDoc= svg_courbe.contentDocument;
+	lalig=svgDoc.getElementById("CutDis"+n);
+      	if (a_effacer==0)
+	lalig.setAttribute("visibility","visible");
+   tablig=document.getElementById("row_res"+n);
+    if (a_effacer==0)
+   	tablig.style.backgroundColor="#ffb83b";
+	oldy=n;
+}
+
+ 	function init(evt)
+	{
+	    if ( window.svgDocument == null )
+	    {
+		svgDocument = evt.target.ownerDocument;
+	    }
+	    tooltip = svgDocument.getElementById('tooltip');
+	    tooltip_bg = svgDocument.getElementById('tooltip_bg');
+	}
+
+	function ShowTooltip(evt, mouseovertext)
+	{
+		   var rect = svgDocument.getBoundingClientRect();
+	     var x = evt.clientX + svgDocument.scrollLeft - rect.left;
+	    var y = evt.clientY + svgDocument.scrollTop - rect.top;
+	    tooltip.setAttributeNS(null,"x",x+11);
+	    tooltip.setAttributeNS(null,"y",y+27);
+	    tooltip.firstChild.data = mouseovertext;
+	    tooltip.setAttributeNS(null,"visibility","visible");
+	    length = tooltip.getComputedTextLength();
+	    tooltip_bg.setAttributeNS(null,"width",length+8);
+	    tooltip_bg.setAttributeNS(null,"x",x+8);
+	    tooltip_bg.setAttributeNS(null,"y",y+14);
+	    tooltip_bg.setAttributeNS(null,"visibility","visibile");
+	}
+
+	function HideTooltip(evt)
+	{
+	    tooltip.setAttributeNS(null,"visibility","hidden");
+	    tooltip_bg.setAttributeNS(null,"visibility","hidden");
+	}
+
+	function select_species(evt,first,under)
+		{
+		var i=0;
+		u=Number(under);
+		if (red_is_on==0)
+			{
+			for (i=0;i<under;i++)
+				{
+				x=first-i;
+				s="specie_"+x;
+			    elt= svgDocument.getElementById(s);
+				elt.setAttribute('fill', 'red');
+				}
+			red_is_on=1;
+			}
+		else
+			{
+			for (i=0;i<under;i++)
+				{
+				x=first-i;
+				s="specie_"+x;
+			    elt= svgDocument.getElementById(s);
+				elt.setAttribute('fill', 'black');
+				}
+			red_is_on=0;
+			}
+		}
+function hideSVG(svgName) {
+var style = document.getElementById(svgName).style.display;
+if (style === "none")
+  document.getElementById(svgName).style.display = "block";
+else
+  document.getElementById(svgName).style.display = "none";
+}
+</script>
+</head>
+<body>
+ASAP Web results<br><pre>date:2023-05-22T10:11:52
+input file:COI_Eve.fa
+nb of sequences:155
+length of seqs:523
+subst. model:K80 Kimura
+recurs split pval:1.000000e-02 
+</pre> Split probability: 0.010000 sequence length: 523
+<br><p>Save Spart text File <a href="https://bioinfo.mnhn.fr/abi/public/asap/temp/611.1804289383/COI_Eve.fa.spart"> here</a></p><p>Save Spart XML File <a href="https://bioinfo.mnhn.fr/abi/public/asap/temp/611.1804289383/COI_Eve.fa.spart.xml"> here</a></p><p>10 best  partitions found by ASAP (see <a href="http://bioinfo.mnhn.fr/abi/public/asap/FAQ_asap.html">FAQ </a>for more details) <br><i><b>The lower the score, the better the partition</b></i></p>
+<table><tbody><tr><td><table><tbody><tr><th>Nb of subsets</th><th>asap-score</th><th colspan="2">P-val (rank)</th><th>W (rank)</th><th>Treshold dist.</th><th>Text</th></tr><tr id="row_res1" onclick="circle_click(1);"> <td>* 5</td><td>1.00</td> <td><img src="ASAP%20Results_files/noir.png" width="20" heigth="20"></td><td> 3.00e-05 (1)</td><td>3.98e-04 (1)</td><td>0.047779</td><td><a href="https://bioinfo.mnhn.fr/abi/public/asap/temp/611.1804289383/COI_Eve.fa.Partition_1.txt">list</a><a href="https://bioinfo.mnhn.fr/abi/public/asap/temp/611.1804289383/COI_Eve.fa.Partition_1.csv"> csv</a></td></tr>
+<tr id="row_res2" onclick="circle_click(2);"> <td>  5</td><td>2.50</td> <td><img src="ASAP%20Results_files/rouge.png" width="20" heigth="20"></td><td> 1.90e-03 (3)</td><td>9.97e-05 (2)</td><td>0.087319</td><td><a href="https://bioinfo.mnhn.fr/abi/public/asap/temp/611.1804289383/COI_Eve.fa.Partition_2.txt">list</a><a href="https://bioinfo.mnhn.fr/abi/public/asap/temp/611.1804289383/COI_Eve.fa.Partition_2.csv"> csv</a></td></tr>
+<tr id="row_res3" onclick="circle_click(3);"> <td>  5</td><td>3.50</td> <td><img src="ASAP%20Results_files/rouge.png" width="20" heigth="20"></td><td> 2.43e-02 (4)</td><td>8.63e-05 (3)</td><td>0.100604</td><td><a href="https://bioinfo.mnhn.fr/abi/public/asap/temp/611.1804289383/COI_Eve.fa.Partition_3.txt">list</a><a href="https://bioinfo.mnhn.fr/abi/public/asap/temp/611.1804289383/COI_Eve.fa.Partition_3.csv"> csv</a></td></tr>
+<tr id="row_res4" onclick="circle_click(4);"> <td>  3</td><td>6.50</td> <td><img src="ASAP%20Results_files/jaune.png" width="20" heigth="20"></td><td> 4.55e-01 (9)</td><td>7.58e-05 (4)</td><td>0.101687</td><td><a href="https://bioinfo.mnhn.fr/abi/public/asap/temp/611.1804289383/COI_Eve.fa.Partition_4.txt">list</a><a href="https://bioinfo.mnhn.fr/abi/public/asap/temp/611.1804289383/COI_Eve.fa.Partition_4.csv"> csv</a></td></tr>
+<tr id="row_res5" onclick="circle_click(5);"> <td>* 8</td><td>8.00</td> <td><img src="ASAP%20Results_files/jaune.png" width="20" heigth="20"></td><td> 4.95e-01 (11)</td><td>6.77e-05 (5)</td><td>0.014506</td><td><a href="https://bioinfo.mnhn.fr/abi/public/asap/temp/611.1804289383/COI_Eve.fa.Partition_5.txt">list</a><a href="https://bioinfo.mnhn.fr/abi/public/asap/temp/611.1804289383/COI_Eve.fa.Partition_5.csv"> csv</a></td></tr>
+<tr id="row_res6" onclick="circle_click(6);"> <td>* 7</td><td>9.00</td> <td><img src="ASAP%20Results_files/jaune.png" width="20" heigth="20"></td><td> 1.62e-01 (6)</td><td>1.26e-05 (12)</td><td>0.017436</td><td><a href="https://bioinfo.mnhn.fr/abi/public/asap/temp/611.1804289383/COI_Eve.fa.Partition_6.txt">list</a><a href="https://bioinfo.mnhn.fr/abi/public/asap/temp/611.1804289383/COI_Eve.fa.Partition_6.csv"> csv</a></td></tr>
+<tr id="row_res7" onclick="circle_click(7);"> <td>* 13</td><td>9.00</td> <td><img src="ASAP%20Results_files/jaune.png" width="20" heigth="20"></td><td> 2.50e-01 (7)</td><td>1.51e-05 (11)</td><td>0.009627</td><td><a href="https://bioinfo.mnhn.fr/abi/public/asap/temp/611.1804289383/COI_Eve.fa.Partition_7.txt">list</a><a href="https://bioinfo.mnhn.fr/abi/public/asap/temp/611.1804289383/COI_Eve.fa.Partition_7.csv"> csv</a></td></tr>
+<tr id="row_res8" onclick="circle_click(8);"> <td>* 11</td><td>9.50</td> <td><img src="ASAP%20Results_files/jaune.png" width="20" heigth="20"></td><td> 6.25e-01 (13)</td><td>3.46e-05 (6)</td><td>0.011551</td><td><a href="https://bioinfo.mnhn.fr/abi/public/asap/temp/611.1804289383/COI_Eve.fa.Partition_8.txt">list</a><a href="https://bioinfo.mnhn.fr/abi/public/asap/temp/611.1804289383/COI_Eve.fa.Partition_8.csv"> csv</a></td></tr>
+<tr id="row_res9" onclick="circle_click(9);"> <td>  59</td><td>11.00</td> <td><img src="ASAP%20Results_files/noir.png" width="20" heigth="20"></td><td> 1.50e-04 (2)</td><td>2.66e-06 (20)</td><td>0.000957</td><td><a href="https://bioinfo.mnhn.fr/abi/public/asap/temp/611.1804289383/COI_Eve.fa.Partition_9.txt">list</a><a href="https://bioinfo.mnhn.fr/abi/public/asap/temp/611.1804289383/COI_Eve.fa.Partition_9.csv"> csv</a></td></tr>
+<tr id="row_res10" onclick="circle_click(10);"> <td>  19</td><td>11.00</td> <td><img src="ASAP%20Results_files/jaune.png" width="20" heigth="20"></td><td> 3.59e-01 (8)</td><td>1.01e-05 (14)</td><td>0.003839</td><td><a href="https://bioinfo.mnhn.fr/abi/public/asap/temp/611.1804289383/COI_Eve.fa.Partition_10.txt">list</a><a href="https://bioinfo.mnhn.fr/abi/public/asap/temp/611.1804289383/COI_Eve.fa.Partition_10.csv"> csv</a></td></tr>
+</tbody></table>
+<i>Number of subsets in this table equals to the number of primary species hypotheses in the respective partition</i></td><td><table><tbody><tr><td>Histogram of distances<a href="https://bioinfo.mnhn.fr/abi/public/asap/temp/611.1804289383/COI_Eve.fa.Histo.svg"> [save]</a></td><td>Ranked distances<a href="https://bioinfo.mnhn.fr/abi/public/asap/temp/611.1804289383/COI_Eve.fa.HistoCum.svg"> [save]</a></td></tr>
+<tr><td><object id="svg1" data="ASAP%20Results_files/COI_Eve.fa.Histo.svg" type="image/svg+xml"></object></td><td><object id="svg2" data="ASAP%20Results_files/COI_Eve.fa.HistoCum.svg" type="image/svg+xml"></object></td></tr></tbody></table></td>	
+</tr></tbody></table>
+<br> <b></b><h2><b>View/Save Boxed subsets graph <a href="https://bioinfo.mnhn.fr/abi/public/asap/temp/611.1804289383/groups.svg">here</a></b></h2><br>
+<svg xmlns="http://www.w3.org/2000/svg" onload="init(evt)" id="svgDocument" width="3640" height="3760">
+<rect x="293" y="20" width="1562" height="540" style="fill:lightblue;stroke:lightblue;"></rect>
+ <line x1="120" y1="20" x2="120" y2="560" style="stroke:black;stroke-width:1"></line>
+  <text x="120" y="15" style="color:black;font-size :15;font-family = monospace;">Asap Score</text>
+  <text x="70" y="20" style="color:black;font-size :15;font-family = monospace;">1.0</text>
+ <line x1="110" y1="20" x2="120" y2="20" style="stroke:black;stroke-width:1"></line>
+  <text x="70" y="74" style="color:black;font-size :15;font-family = monospace;">3.2</text>
+ <line x1="110" y1="74" x2="120" y2="74" style="stroke:black;stroke-width:1"></line>
+  <text x="70" y="128" style="color:black;font-size :15;font-family = monospace;">5.4</text>
+ <line x1="110" y1="128" x2="120" y2="128" style="stroke:black;stroke-width:1"></line>
+  <text x="70" y="182" style="color:black;font-size :15;font-family = monospace;">7.6</text>
+ <line x1="110" y1="182" x2="120" y2="182" style="stroke:black;stroke-width:1"></line>
+  <text x="70" y="236" style="color:black;font-size :15;font-family = monospace;">9.8</text>
+ <line x1="110" y1="236" x2="120" y2="236" style="stroke:black;stroke-width:1"></line>
+  <text x="70" y="290" style="color:black;font-size :15;font-family = monospace;">12.0</text>
+ <line x1="110" y1="290" x2="120" y2="290" style="stroke:black;stroke-width:1"></line>
+  <text x="70" y="344" style="color:black;font-size :15;font-family = monospace;">14.2</text>
+ <line x1="110" y1="344" x2="120" y2="344" style="stroke:black;stroke-width:1"></line>
+  <text x="70" y="398" style="color:black;font-size :15;font-family = monospace;">16.4</text>
+ <line x1="110" y1="398" x2="120" y2="398" style="stroke:black;stroke-width:1"></line>
+  <text x="70" y="452" style="color:black;font-size :15;font-family = monospace;">18.6</text>
+ <line x1="110" y1="452" x2="120" y2="452" style="stroke:black;stroke-width:1"></line>
+  <text x="70" y="506" style="color:black;font-size :15;font-family = monospace;">20.8</text>
+ <line x1="110" y1="506" x2="120" y2="506" style="stroke:black;stroke-width:1"></line>
+  <text x="660" y="575" style="color:black;font-size :15;font-family = monospace;">0.016</text>
+ <line x1="660" y1="560" x2="660" y2="570" style="stroke:black;stroke-width:1"></line>
+  <text x="1201" y="575" style="color:black;font-size :15;font-family = monospace;">0.031</text>
+ <line x1="1201" y1="560" x2="1201" y2="570" style="stroke:black;stroke-width:1"></line>
+  <text x="1741" y="575" style="color:black;font-size :15;font-family = monospace;">0.047</text>
+ <line x1="1741" y1="560" x2="1741" y2="570" style="stroke:black;stroke-width:1"></line>
+  <text x="2282" y="575" style="color:black;font-size :15;font-family = monospace;">0.062</text>
+ <line x1="2282" y1="560" x2="2282" y2="570" style="stroke:black;stroke-width:1"></line>
+  <text x="2822" y="575" style="color:black;font-size :15;font-family = monospace;">0.078</text>
+ <line x1="2822" y1="560" x2="2822" y2="570" style="stroke:black;stroke-width:1"></line>
+  <text x="3363" y="575" style="color:black;font-size :15;font-family = monospace;">0.093</text>
+ <line x1="3363" y1="560" x2="3363" y2="570" style="stroke:black;stroke-width:1"></line>
+  <text x="3903" y="575" style="color:black;font-size :15;font-family = monospace;">0.109</text>
+ <line x1="3903" y1="560" x2="3903" y2="570" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="560" x2="3903" y2="560" style="stroke:black;stroke-width:1"></line>
+  <text x="3883" y="572" style="color:black;font-size :10;font-family = monospace;">dist</text>
+    <line visibility="hidden" id="bestline4" x1="3681" y1="179" x2="3681" y2="3745" stroke="green"></line>
+    <line visibility="hidden" id="bestlinejump4" x1="3650" y1="179" x2="3650" y2="3745" stroke="red" stroke-dasharray="5, 10"></line>
+ <circle id="bestScore20" onmousemove="ShowTooltip(evt, 'inter/intra: 7.58e-05 Nb species: 2 / 3 [1 subsets] dist:0.102570')" onmouseout="HideTooltip(evt)" onclick="circle_click(4);" cx="3681" cy="179" r="7" style="fill:#FFFF00;stroke:black;"></circle>
+ <line x1="3681" y1="179" x2="3620" y2="105" style="stroke:black;stroke-width:1"></line>
+    <line visibility="hidden" id="bestline3" x1="3620" y1="105" x2="3620" y2="3745" stroke="green"></line>
+    <line visibility="hidden" id="bestlinejump3" x1="3613" y1="105" x2="3613" y2="3745" stroke="red" stroke-dasharray="5, 10"></line>
+ <circle id="bestScore19" onmousemove="ShowTooltip(evt, 'inter/intra: 8.63e-05 Nb species: 3 / 5 [2 subsets] dist:0.100803')" onmouseout="HideTooltip(evt)" onclick="circle_click(3);" cx="3620" cy="105" r="7" style="fill:#F00000;stroke:black;"></circle>
+ <line x1="3620" y1="105" x2="3606" y2="81" style="stroke:black;stroke-width:1"></line>
+    <line visibility="hidden" id="bestline2" x1="3606" y1="81" x2="3606" y2="3745" stroke="green"></line>
+    <line visibility="hidden" id="bestlinejump2" x1="3151" y1="81" x2="3151" y2="3745" stroke="red" stroke-dasharray="5, 10"></line>
+ <circle id="bestScore18" onmousemove="ShowTooltip(evt, 'inter/intra: 9.97e-05 Nb species: 4 / 5 [3 subsets] dist:0.100406')" onmouseout="HideTooltip(evt)" onclick="circle_click(2);" cx="3606" cy="81" r="7" style="fill:#F00000;stroke:black;"></circle>
+ <line x1="3606" y1="81" x2="2697" y2="44" style="stroke:black;stroke-width:1"></line>
+    <line visibility="hidden" id="bestline1" x1="2697" y1="44" x2="2697" y2="3745" stroke="green"></line>
+    <line visibility="hidden" id="bestlinejump1" x1="1778" y1="44" x2="1778" y2="3745" stroke="red" stroke-dasharray="5, 10"></line>
+ <circle id="bestScore17" onmousemove="ShowTooltip(evt, 'inter/intra: 3.98e-04 Nb species: 5 / 5 [4 subsets] dist:0.074232')" onmouseout="HideTooltip(evt)" onclick="circle_click(1);" cx="2697" cy="44" r="7" style="fill:#320000;stroke:black;"></circle>
+ <line x1="2697" y1="44" x2="860" y2="363" style="stroke:black;stroke-width:1"></line>
+ <line x1="860" y1="363" x2="793" y2="240" style="stroke:black;stroke-width:1"></line>
+    <line visibility="hidden" id="bestline6" x1="793" y1="240" x2="793" y2="3745" stroke="green"></line>
+    <line visibility="hidden" id="bestlinejump6" x1="725" y1="240" x2="725" y2="3745" stroke="red" stroke-dasharray="5, 10"></line>
+ <circle id="bestScore15" onmousemove="ShowTooltip(evt, 'inter/intra: 1.26e-05 Nb species: 7 / 7 [6 subsets] dist:0.019391')" onmouseout="HideTooltip(evt)" onclick="circle_click(6);" cx="793" cy="240" r="7" style="fill:#FFFF00;stroke:black;"></circle>
+ <line x1="793" y1="240" x2="657" y2="216" style="stroke:black;stroke-width:1"></line>
+    <line visibility="hidden" id="bestline5" x1="657" y1="216" x2="657" y2="3745" stroke="green"></line>
+    <line visibility="hidden" id="bestlinejump5" x1="623" y1="216" x2="623" y2="3745" stroke="red" stroke-dasharray="5, 10"></line>
+ <circle id="bestScore14" onmousemove="ShowTooltip(evt, 'inter/intra: 6.77e-05 Nb species: 8 / 8 [7 subsets] dist:0.015480')" onmouseout="HideTooltip(evt)" onclick="circle_click(5);" cx="657" cy="216" r="7" style="fill:#FFFF00;stroke:black;"></circle>
+ <line x1="657" y1="216" x2="589" y2="314" style="stroke:black;stroke-width:1"></line>
+ <line x1="589" y1="314" x2="521" y2="253" style="stroke:black;stroke-width:1"></line>
+    <line visibility="hidden" id="bestline8" x1="521" y1="253" x2="521" y2="3745" stroke="green"></line>
+    <line visibility="hidden" id="bestlinejump8" x1="521" y1="253" x2="521" y2="3745" stroke="red" stroke-dasharray="5, 10"></line>
+ <circle id="bestScore12" onmousemove="ShowTooltip(evt, 'inter/intra: 3.46e-05 Nb species: 11 / 11 [9 subsets] dist:0.011558')" onmouseout="HideTooltip(evt)" onclick="circle_click(8);" cx="521" cy="253" r="7" style="fill:#FFFF00;stroke:black;"></circle>
+ <line x1="521" y1="253" x2="520" y2="302" style="stroke:black;stroke-width:1"></line>
+ <line x1="520" y1="302" x2="454" y2="240" style="stroke:black;stroke-width:1"></line>
+    <line visibility="hidden" id="bestline7" x1="454" y1="240" x2="454" y2="3745" stroke="green"></line>
+    <line visibility="hidden" id="bestlinejump7" x1="454" y1="240" x2="454" y2="3745" stroke="red" stroke-dasharray="5, 10"></line>
+ <circle id="bestScore10" onmousemove="ShowTooltip(evt, 'inter/intra: 1.51e-05 Nb species: 13 / 13 [12 subsets] dist:0.009633')" onmouseout="HideTooltip(evt)" onclick="circle_click(7);" cx="454" cy="240" r="7" style="fill:#FFFF00;stroke:black;"></circle>
+ <line x1="454" y1="240" x2="454" y2="326" style="stroke:black;stroke-width:1"></line>
+ <line x1="454" y1="326" x2="387" y2="375" style="stroke:black;stroke-width:1"></line>
+ <line x1="387" y1="375" x2="386" y2="474" style="stroke:black;stroke-width:1"></line>
+ <line x1="386" y1="474" x2="319" y2="302" style="stroke:black;stroke-width:1"></line>
+ <line x1="319" y1="302" x2="253" y2="290" style="stroke:black;stroke-width:1"></line>
+    <line visibility="hidden" id="bestline10" x1="253" y1="290" x2="253" y2="3745" stroke="green"></line>
+    <line visibility="hidden" id="bestlinejump10" x1="253" y1="290" x2="253" y2="3745" stroke="red" stroke-dasharray="5, 10"></line>
+ <circle id="bestScore5" onmousemove="ShowTooltip(evt, 'inter/intra: 1.01e-05 Nb species: 19 / 19 [18 subsets] dist:0.003841')" onmouseout="HideTooltip(evt)" onclick="circle_click(10);" cx="253" cy="290" r="7" style="fill:#FFFF00;stroke:black;"></circle>
+ <line x1="253" y1="290" x2="253" y2="412" style="stroke:black;stroke-width:1"></line>
+ <line x1="253" y1="412" x2="253" y2="412" style="stroke:black;stroke-width:1"></line>
+ <line x1="253" y1="412" x2="186" y2="326" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="326" x2="186" y2="290" style="stroke:black;stroke-width:1"></line>
+    <line visibility="hidden" id="bestline9" x1="186" y1="290" x2="186" y2="3745" stroke="green"></line>
+    <line visibility="hidden" id="bestlinejump9" x1="153" y1="290" x2="153" y2="3745" stroke="red" stroke-dasharray="5, 10"></line>
+ <circle id="bestScore1" onmousemove="ShowTooltip(evt, 'inter/intra: 2.66e-06 Nb species: 59 / 59 [35 subsets] dist:0.001914')" onmouseout="HideTooltip(evt)" onclick="circle_click(9);" cx="186" cy="290" r="7" style="fill:#320000;stroke:black;"></circle>
+ <line x1="186" y1="290" x2="120" y2="535" style="stroke:black;stroke-width:1"></line>
+  <text x="10" y="622" style="color:black;font-size :12;font-family = monospace;">Legend:</text>
+ <circle cx="80" cy="610" r="6" fill="#320000"></circle>
+  <text x="75" y="625" style="color:black;font-size :12;font-family = monospace;">&lt;0.001</text>
+ <circle cx="142" cy="610" r="6" fill="#F00000"></circle>
+  <text x="137" y="625" style="color:black;font-size :12;font-family = monospace;">&lt;0.05</text>
+ <circle cx="204" cy="610" r="6" fill="#FFAF00"></circle>
+  <text x="199" y="625" style="color:black;font-size :12;font-family = monospace;">&lt;0.1</text>
+ <circle cx="266" cy="610" r="6" fill="#FFFF00"></circle>
+  <text x="261" y="625" style="color:black;font-size :12;font-family = monospace;">&gt;0.1</text>
+ <circle cx="328" cy="610" r="6" fill="#CCCCCC"></circle>
+  <text x="323" y="625" style="color:black;font-size :12;font-family = monospace;">N/A</text>
+ <line x1="400" y1="625" x2="410" y2="625" style="stroke:#ffb83b;stroke-width:1"></line>
+ <line x1="120" y1="660" x2="120" y2="660" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="680" x2="120" y2="680" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="700" x2="120" y2="700" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="720" x2="120" y2="720" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="740" x2="120" y2="740" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="760" x2="120" y2="760" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="780" x2="120" y2="780" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="800" x2="120" y2="800" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="820" x2="120" y2="820" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="840" x2="120" y2="840" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="860" x2="120" y2="860" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="880" x2="120" y2="880" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="900" x2="120" y2="900" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="920" x2="120" y2="920" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="940" x2="120" y2="940" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="960" x2="120" y2="960" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="980" x2="120" y2="980" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1000" x2="120" y2="1000" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1020" x2="120" y2="1020" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1040" x2="120" y2="1040" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1060" x2="120" y2="1060" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1080" x2="120" y2="1080" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1100" x2="120" y2="1100" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1120" x2="120" y2="1120" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1140" x2="120" y2="1140" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="660" x2="120" y2="1140" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1280" x2="120" y2="1280" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1300" x2="120" y2="1300" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1320" x2="120" y2="1320" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1340" x2="120" y2="1340" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1360" x2="120" y2="1360" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1380" x2="120" y2="1380" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1400" x2="120" y2="1400" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1420" x2="120" y2="1420" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1440" x2="120" y2="1440" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1460" x2="120" y2="1460" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1480" x2="120" y2="1480" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1500" x2="120" y2="1500" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1520" x2="120" y2="1520" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1540" x2="120" y2="1540" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1560" x2="120" y2="1560" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1580" x2="120" y2="1580" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1600" x2="120" y2="1600" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1620" x2="120" y2="1620" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1640" x2="120" y2="1640" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1660" x2="120" y2="1660" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1680" x2="120" y2="1680" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1700" x2="120" y2="1700" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1720" x2="120" y2="1720" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1740" x2="120" y2="1740" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1760" x2="120" y2="1760" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1780" x2="120" y2="1780" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1800" x2="120" y2="1800" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1820" x2="120" y2="1820" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1840" x2="120" y2="1840" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1860" x2="120" y2="1860" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1880" x2="120" y2="1880" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1900" x2="120" y2="1900" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1920" x2="120" y2="1920" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1940" x2="120" y2="1940" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1960" x2="120" y2="1960" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1280" x2="120" y2="1960" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2300" x2="120" y2="2300" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2320" x2="120" y2="2320" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2340" x2="120" y2="2340" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2360" x2="120" y2="2360" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2380" x2="120" y2="2380" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2400" x2="120" y2="2400" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2420" x2="120" y2="2420" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2300" x2="120" y2="2420" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2520" x2="120" y2="2520" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2540" x2="120" y2="2540" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2560" x2="120" y2="2560" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2580" x2="120" y2="2580" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2600" x2="120" y2="2600" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2620" x2="120" y2="2620" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2640" x2="120" y2="2640" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2660" x2="120" y2="2660" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2680" x2="120" y2="2680" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2700" x2="120" y2="2700" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2720" x2="120" y2="2720" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2520" x2="120" y2="2720" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2740" x2="120" y2="2740" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2760" x2="120" y2="2760" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2780" x2="120" y2="2780" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2800" x2="120" y2="2800" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2820" x2="120" y2="2820" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2840" x2="120" y2="2840" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2860" x2="120" y2="2860" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2880" x2="120" y2="2880" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2740" x2="120" y2="2880" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2100" x2="120" y2="2100" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2120" x2="120" y2="2120" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2140" x2="120" y2="2140" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2100" x2="120" y2="2140" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2220" x2="120" y2="2220" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2240" x2="120" y2="2240" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2220" x2="120" y2="2240" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2160" x2="120" y2="2160" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2180" x2="120" y2="2180" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2160" x2="120" y2="2180" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3300" x2="120" y2="3300" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3320" x2="120" y2="3320" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3340" x2="120" y2="3340" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3300" x2="120" y2="3340" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2980" x2="120" y2="2980" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3000" x2="120" y2="3000" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3020" x2="120" y2="3020" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3040" x2="120" y2="3040" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3060" x2="120" y2="3060" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3080" x2="120" y2="3080" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3100" x2="120" y2="3100" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3120" x2="120" y2="3120" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2980" x2="120" y2="3120" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3380" x2="120" y2="3380" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3400" x2="120" y2="3400" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3380" x2="120" y2="3400" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3600" x2="120" y2="3600" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3620" x2="120" y2="3620" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3600" x2="120" y2="3620" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="900" x2="186" y2="900" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1160" x2="186" y2="1160" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="900" x2="186" y2="1160" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1620" x2="186" y2="1620" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1980" x2="186" y2="1980" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="1620" x2="186" y2="1980" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2360" x2="186" y2="2360" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2440" x2="186" y2="2440" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2460" x2="186" y2="2460" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2480" x2="186" y2="2480" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2500" x2="186" y2="2500" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="2360" x2="186" y2="2500" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2620" x2="186" y2="2620" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2810" x2="186" y2="2810" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2900" x2="186" y2="2900" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2920" x2="186" y2="2920" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2940" x2="186" y2="2940" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="2620" x2="186" y2="2940" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2120" x2="186" y2="2120" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2170" x2="186" y2="2170" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2200" x2="186" y2="2200" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2230" x2="186" y2="2230" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2260" x2="186" y2="2260" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2280" x2="186" y2="2280" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="2120" x2="186" y2="2280" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2960" x2="186" y2="2960" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3050" x2="186" y2="3050" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="2960" x2="186" y2="3050" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3320" x2="186" y2="3320" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3360" x2="186" y2="3360" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="3320" x2="186" y2="3360" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3220" x2="186" y2="3220" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3240" x2="186" y2="3240" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="3220" x2="186" y2="3240" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3420" x2="186" y2="3420" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3440" x2="186" y2="3440" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="3420" x2="186" y2="3440" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3540" x2="186" y2="3540" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3560" x2="186" y2="3560" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3580" x2="186" y2="3580" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3610" x2="186" y2="3610" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3640" x2="186" y2="3640" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3660" x2="186" y2="3660" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="3540" x2="186" y2="3660" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="1030" x2="186" y2="1030" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1180" x2="186" y2="1180" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1200" x2="186" y2="1200" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="1030" x2="186" y2="1200" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1260" x2="186" y2="1260" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="1800" x2="186" y2="1800" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="1260" x2="186" y2="1800" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2080" x2="186" y2="2080" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="2210" x2="186" y2="2210" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="2080" x2="186" y2="2210" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="2838" x2="186" y2="2838" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="3005" x2="186" y2="3005" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3140" x2="186" y2="3140" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="2838" x2="186" y2="3140" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="3598" x2="186" y2="3598" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3680" x2="186" y2="3680" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="3598" x2="186" y2="3680" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="2145" x2="253" y2="2145" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="2448" x2="253" y2="2448" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="2994" x2="253" y2="2994" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3160" x2="253" y2="3160" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3180" x2="253" y2="3180" style="stroke:black;stroke-width:1"></line>
+ <line x1="253" y1="2145" x2="253" y2="3180" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="3639" x2="253" y2="3639" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3700" x2="253" y2="3700" style="stroke:black;stroke-width:1"></line>
+ <line x1="253" y1="3639" x2="253" y2="3700" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="1136" x2="253" y2="1136" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1220" x2="253" y2="1220" style="stroke:black;stroke-width:1"></line>
+ <line x1="253" y1="1136" x2="253" y2="1220" style="stroke:black;stroke-width:1"></line>
+ <line x1="253" y1="2785" x2="253" y2="2785" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3200" x2="253" y2="3200" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="3230" x2="253" y2="3230" style="stroke:black;stroke-width:1"></line>
+ <line x1="253" y1="2785" x2="253" y2="3230" style="stroke:black;stroke-width:1"></line>
+ <line x1="253" y1="3669" x2="253" y2="3669" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3720" x2="253" y2="3720" style="stroke:black;stroke-width:1"></line>
+ <line x1="253" y1="3669" x2="253" y2="3720" style="stroke:black;stroke-width:1"></line>
+ <line x1="253" y1="1178" x2="253" y2="1178" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="1240" x2="253" y2="1240" style="stroke:black;stroke-width:1"></line>
+ <line x1="253" y1="1178" x2="253" y2="1240" style="stroke:black;stroke-width:1"></line>
+ <line x1="253" y1="1209" x2="319" y2="1209" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="1530" x2="319" y2="1530" style="stroke:black;stroke-width:1"></line>
+ <line x1="319" y1="1209" x2="319" y2="1530" style="stroke:black;stroke-width:1"></line>
+ <line x1="253" y1="3071" x2="386" y2="3071" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3260" x2="386" y2="3260" style="stroke:black;stroke-width:1"></line>
+ <line x1="386" y1="3071" x2="386" y2="3260" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3500" x2="386" y2="3500" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3520" x2="386" y2="3520" style="stroke:black;stroke-width:1"></line>
+ <line x1="386" y1="3500" x2="386" y2="3520" style="stroke:black;stroke-width:1"></line>
+ <line x1="319" y1="1369" x2="387" y2="1369" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2000" x2="387" y2="2000" style="stroke:black;stroke-width:1"></line>
+ <line x1="387" y1="1369" x2="387" y2="2000" style="stroke:black;stroke-width:1"></line>
+ <line x1="253" y1="3694" x2="454" y2="3694" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3740" x2="454" y2="3740" style="stroke:black;stroke-width:1"></line>
+ <line x1="454" y1="3694" x2="454" y2="3740" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="3340" x2="454" y2="3340" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3390" x2="454" y2="3390" style="stroke:black;stroke-width:1"></line>
+ <line x1="454" y1="3340" x2="454" y2="3390" style="stroke:black;stroke-width:1"></line>
+ <line x1="386" y1="3165" x2="520" y2="3165" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3280" x2="520" y2="3280" style="stroke:black;stroke-width:1"></line>
+ <line x1="520" y1="3165" x2="520" y2="3280" style="stroke:black;stroke-width:1"></line>
+ <line x1="520" y1="3222" x2="521" y2="3222" style="stroke:black;stroke-width:1"></line>
+ <line x1="454" y1="3365" x2="521" y2="3365" style="stroke:black;stroke-width:1"></line>
+ <line x1="186" y1="3430" x2="521" y2="3430" style="stroke:black;stroke-width:1"></line>
+ <line x1="521" y1="3222" x2="521" y2="3430" style="stroke:black;stroke-width:1"></line>
+ <line x1="521" y1="3339" x2="589" y2="3339" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3460" x2="589" y2="3460" style="stroke:black;stroke-width:1"></line>
+ <line x1="589" y1="3339" x2="589" y2="3460" style="stroke:black;stroke-width:1"></line>
+ <line x1="589" y1="3399" x2="657" y2="3399" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="3480" x2="657" y2="3480" style="stroke:black;stroke-width:1"></line>
+ <line x1="657" y1="3399" x2="657" y2="3480" style="stroke:black;stroke-width:1"></line>
+ <line x1="387" y1="1684" x2="793" y2="1684" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2020" x2="793" y2="2020" style="stroke:black;stroke-width:1"></line>
+ <line x1="793" y1="1684" x2="793" y2="2020" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2040" x2="860" y2="2040" style="stroke:black;stroke-width:1"></line>
+ <line x1="120" y1="2060" x2="860" y2="2060" style="stroke:black;stroke-width:1"></line>
+ <line x1="860" y1="2040" x2="860" y2="2060" style="stroke:black;stroke-width:1"></line>
+ <line x1="793" y1="1852" x2="2697" y2="1852" style="stroke:black;stroke-width:1"></line>
+ <line x1="860" y1="2050" x2="2697" y2="2050" style="stroke:black;stroke-width:1"></line>
+ <line x1="2697" y1="1852" x2="2697" y2="2050" style="stroke:black;stroke-width:1"></line>
+ <line x1="657" y1="3439" x2="3606" y2="3439" style="stroke:black;stroke-width:1"></line>
+ <line x1="386" y1="3510" x2="3606" y2="3510" style="stroke:black;stroke-width:1"></line>
+ <line x1="3606" y1="3439" x2="3606" y2="3510" style="stroke:black;stroke-width:1"></line>
+ <line x1="3606" y1="3474" x2="3620" y2="3474" style="stroke:black;stroke-width:1"></line>
+ <line x1="454" y1="3717" x2="3620" y2="3717" style="stroke:black;stroke-width:1"></line>
+ <line x1="3620" y1="3474" x2="3620" y2="3717" style="stroke:black;stroke-width:1"></line>
+ <line x1="2697" y1="1951" x2="3681" y2="1951" style="stroke:black;stroke-width:1"></line>
+ <line x1="3620" y1="3595" x2="3681" y2="3595" style="stroke:black;stroke-width:1"></line>
+ <line x1="3681" y1="1951" x2="3681" y2="3595" style="stroke:black;stroke-width:1"></line>
+ <line x1="3681" y1="2773" x2="3851" y2="2773" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="660" id="specie_0" onmousemove="ShowTooltip(evt, 'A7_BL_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A7_BL_A</text>
+ <line x1="116" y1="660" x2="120" y2="660" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="680" id="specie_1" onmousemove="ShowTooltip(evt, 'A9_BL_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A9_BL_A</text>
+ <line x1="116" y1="680" x2="120" y2="680" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="700" id="specie_2" onmousemove="ShowTooltip(evt, 'A10_BL_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A10_BL_A</text>
+ <line x1="116" y1="700" x2="120" y2="700" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="720" id="specie_3" onmousemove="ShowTooltip(evt, 'A13_BL_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A13_BL_A</text>
+ <line x1="116" y1="720" x2="120" y2="720" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2000" id="specie_67" onmousemove="ShowTooltip(evt, 'A33_So_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A33_So_A</text>
+ <line x1="116" y1="2000" x2="120" y2="2000" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1260" id="specie_30" onmousemove="ShowTooltip(evt, 'A34_So_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A34_So_A</text>
+ <line x1="116" y1="1260" x2="120" y2="1260" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1280" id="specie_31" onmousemove="ShowTooltip(evt, 'A35_So_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A35_So_A</text>
+ <line x1="116" y1="1280" x2="120" y2="1280" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1300" id="specie_32" onmousemove="ShowTooltip(evt, 'A36_So_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A36_So_A</text>
+ <line x1="116" y1="1300" x2="120" y2="1300" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="740" id="specie_4" onmousemove="ShowTooltip(evt, 'A38_So_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A38_So_A</text>
+ <line x1="116" y1="740" x2="120" y2="740" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="760" id="specie_5" onmousemove="ShowTooltip(evt, 'A39_So_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A39_So_A</text>
+ <line x1="116" y1="760" x2="120" y2="760" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2040" id="specie_69" onmousemove="ShowTooltip(evt, 'A56_To_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A56_To_A</text>
+ <line x1="116" y1="2040" x2="120" y2="2040" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="780" id="specie_6" onmousemove="ShowTooltip(evt, 'A85_Vn_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A85_Vn_A</text>
+ <line x1="116" y1="780" x2="120" y2="780" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="800" id="specie_7" onmousemove="ShowTooltip(evt, 'A86_Vn_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A86_Vn_A</text>
+ <line x1="116" y1="800" x2="120" y2="800" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1240" id="specie_29" onmousemove="ShowTooltip(evt, 'A87_Vn_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A87_Vn_A</text>
+ <line x1="116" y1="1240" x2="120" y2="1240" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="820" id="specie_8" onmousemove="ShowTooltip(evt, 'A88_Vn_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A88_Vn_A</text>
+ <line x1="116" y1="820" x2="120" y2="820" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="840" id="specie_9" onmousemove="ShowTooltip(evt, 'A89_Vn_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A89_Vn_A</text>
+ <line x1="116" y1="840" x2="120" y2="840" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="860" id="specie_10" onmousemove="ShowTooltip(evt, 'A93_Vn_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A93_Vn_A</text>
+ <line x1="116" y1="860" x2="120" y2="860" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="880" id="specie_11" onmousemove="ShowTooltip(evt, 'A95_Vn_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A95_Vn_A</text>
+ <line x1="116" y1="880" x2="120" y2="880" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1320" id="specie_33" onmousemove="ShowTooltip(evt, 'A96_Vn_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A96_Vn_A</text>
+ <line x1="116" y1="1320" x2="120" y2="1320" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="900" id="specie_12" onmousemove="ShowTooltip(evt, 'A99_Vn_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A99_Vn_A</text>
+ <line x1="116" y1="900" x2="120" y2="900" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1340" id="specie_34" onmousemove="ShowTooltip(evt, 'A100_Vn_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A100_Vn_A</text>
+ <line x1="116" y1="1340" x2="120" y2="1340" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="920" id="specie_13" onmousemove="ShowTooltip(evt, 'A107_Ya_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A107_Ya_A</text>
+ <line x1="116" y1="920" x2="120" y2="920" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1360" id="specie_35" onmousemove="ShowTooltip(evt, 'A108_Ya_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A108_Ya_A</text>
+ <line x1="116" y1="1360" x2="120" y2="1360" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1380" id="specie_36" onmousemove="ShowTooltip(evt, 'A109_Ya_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A109_Ya_A</text>
+ <line x1="116" y1="1380" x2="120" y2="1380" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1400" id="specie_37" onmousemove="ShowTooltip(evt, 'A110_Ya_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A110_Ya_A</text>
+ <line x1="116" y1="1400" x2="120" y2="1400" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1220" id="specie_28" onmousemove="ShowTooltip(evt, 'A111_Ya_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A111_Ya_A</text>
+ <line x1="116" y1="1220" x2="120" y2="1220" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2080" id="specie_71" onmousemove="ShowTooltip(evt, 'E1_AR_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E1_AR_S</text>
+ <line x1="116" y1="2080" x2="120" y2="2080" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2300" id="specie_82" onmousemove="ShowTooltip(evt, 'E2_AR_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E2_AR_S</text>
+ <line x1="116" y1="2300" x2="120" y2="2300" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2320" id="specie_83" onmousemove="ShowTooltip(evt, 'E3_AR_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E3_AR_S</text>
+ <line x1="116" y1="2320" x2="120" y2="2320" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2440" id="specie_89" onmousemove="ShowTooltip(evt, 'E4_AR_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E4_AR_S</text>
+ <line x1="116" y1="2440" x2="120" y2="2440" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2520" id="specie_93" onmousemove="ShowTooltip(evt, 'E5_AR_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E5_AR_S</text>
+ <line x1="116" y1="2520" x2="120" y2="2520" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2340" id="specie_84" onmousemove="ShowTooltip(evt, 'E6_AR_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E6_AR_S</text>
+ <line x1="116" y1="2340" x2="120" y2="2340" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2920" id="specie_113" onmousemove="ShowTooltip(evt, 'E24_AR_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E24_AR_S</text>
+ <line x1="116" y1="2920" x2="120" y2="2920" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2740" id="specie_104" onmousemove="ShowTooltip(evt, 'E25_AR_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E25_AR_S</text>
+ <line x1="116" y1="2740" x2="120" y2="2740" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2100" id="specie_72" onmousemove="ShowTooltip(evt, 'E26_AR_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E26_AR_S</text>
+ <line x1="116" y1="2100" x2="120" y2="2100" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2540" id="specie_94" onmousemove="ShowTooltip(evt, 'E27_AR_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E27_AR_S</text>
+ <line x1="116" y1="2540" x2="120" y2="2540" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3280" id="specie_131" onmousemove="ShowTooltip(evt, 'E28_BR_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E28_BR_S</text>
+ <line x1="116" y1="3280" x2="120" y2="3280" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2760" id="specie_105" onmousemove="ShowTooltip(evt, 'E32_GR_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E32_GR_S</text>
+ <line x1="116" y1="2760" x2="120" y2="2760" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2060" id="specie_70" onmousemove="ShowTooltip(evt, 'E33_GR_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E33_GR_A</text>
+ <line x1="116" y1="2060" x2="120" y2="2060" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3180" id="specie_126" onmousemove="ShowTooltip(evt, 'E34_GR_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E34_GR_S</text>
+ <line x1="116" y1="3180" x2="120" y2="3180" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2960" id="specie_115" onmousemove="ShowTooltip(evt, 'E35_GR_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E35_GR_S</text>
+ <line x1="116" y1="2960" x2="120" y2="2960" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2220" id="specie_78" onmousemove="ShowTooltip(evt, 'E36_GR_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E36_GR_S</text>
+ <line x1="116" y1="2220" x2="120" y2="2220" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2160" id="specie_75" onmousemove="ShowTooltip(evt, 'E37_GR_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E37_GR_S</text>
+ <line x1="116" y1="2160" x2="120" y2="2160" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3300" id="specie_132" onmousemove="ShowTooltip(evt, 'E38_GR_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E38_GR_S</text>
+ <line x1="116" y1="3300" x2="120" y2="3300" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3320" id="specie_133" onmousemove="ShowTooltip(evt, 'E61_GR_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E61_GR_S</text>
+ <line x1="116" y1="3320" x2="120" y2="3320" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3220" id="specie_128" onmousemove="ShowTooltip(evt, 'E62_GR_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E62_GR_S</text>
+ <line x1="116" y1="3220" x2="120" y2="3220" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3160" id="specie_125" onmousemove="ShowTooltip(evt, 'E63_GR_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E63_GR_S</text>
+ <line x1="116" y1="3160" x2="120" y2="3160" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2980" id="specie_116" onmousemove="ShowTooltip(evt, 'E64_GL_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E64_GL_S</text>
+ <line x1="116" y1="2980" x2="120" y2="2980" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2180" id="specie_76" onmousemove="ShowTooltip(evt, 'E65_GL_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E65_GL_S</text>
+ <line x1="116" y1="2180" x2="120" y2="2180" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3000" id="specie_117" onmousemove="ShowTooltip(evt, 'E66_GL_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E66_GL_S</text>
+ <line x1="116" y1="3000" x2="120" y2="3000" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2780" id="specie_106" onmousemove="ShowTooltip(evt, 'E67_GL_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E67_GL_S</text>
+ <line x1="116" y1="2780" x2="120" y2="2780" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2560" id="specie_95" onmousemove="ShowTooltip(evt, 'E72_GL_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E72_GL_S</text>
+ <line x1="116" y1="2560" x2="120" y2="2560" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2900" id="specie_112" onmousemove="ShowTooltip(evt, 'E73_GL_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E73_GL_S</text>
+ <line x1="116" y1="2900" x2="120" y2="2900" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2580" id="specie_96" onmousemove="ShowTooltip(evt, 'E85_GL_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E85_GL_S</text>
+ <line x1="116" y1="2580" x2="120" y2="2580" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2120" id="specie_73" onmousemove="ShowTooltip(evt, 'E86_GL_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E86_GL_S</text>
+ <line x1="116" y1="2120" x2="120" y2="2120" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2140" id="specie_74" onmousemove="ShowTooltip(evt, 'E99_GL_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E99_GL_S</text>
+ <line x1="116" y1="2140" x2="120" y2="2140" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2600" id="specie_97" onmousemove="ShowTooltip(evt, 'E102_GL_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E102_GL_S</text>
+ <line x1="116" y1="2600" x2="120" y2="2600" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2800" id="specie_107" onmousemove="ShowTooltip(evt, 'E103_BL_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E103_BL_S</text>
+ <line x1="116" y1="2800" x2="120" y2="2800" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3360" id="specie_135" onmousemove="ShowTooltip(evt, 'E104_BL_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E104_BL_S</text>
+ <line x1="116" y1="3360" x2="120" y2="3360" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2200" id="specie_77" onmousemove="ShowTooltip(evt, 'E105_BL_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E105_BL_S</text>
+ <line x1="116" y1="2200" x2="120" y2="2200" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3340" id="specie_134" onmousemove="ShowTooltip(evt, 'E106_BL_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E106_BL_S</text>
+ <line x1="116" y1="3340" x2="120" y2="3340" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2460" id="specie_90" onmousemove="ShowTooltip(evt, 'E107_BL_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E107_BL_S</text>
+ <line x1="116" y1="2460" x2="120" y2="2460" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3480" id="specie_141" onmousemove="ShowTooltip(evt, 'E108_AL_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E108_AL_S</text>
+ <line x1="116" y1="3480" x2="120" y2="3480" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3200" id="specie_127" onmousemove="ShowTooltip(evt, 'E109_AL_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E109_AL_S</text>
+ <line x1="116" y1="3200" x2="120" y2="3200" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2360" id="specie_85" onmousemove="ShowTooltip(evt, 'E111_AL_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E111_AL_S</text>
+ <line x1="116" y1="2360" x2="120" y2="2360" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2820" id="specie_108" onmousemove="ShowTooltip(evt, 'E112_AL_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E112_AL_S</text>
+ <line x1="116" y1="2820" x2="120" y2="2820" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2620" id="specie_98" onmousemove="ShowTooltip(evt, 'E113_AL_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E113_AL_S</text>
+ <line x1="116" y1="2620" x2="120" y2="2620" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2840" id="specie_109" onmousemove="ShowTooltip(evt, 'E138_AL_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E138_AL_S</text>
+ <line x1="116" y1="2840" x2="120" y2="2840" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3020" id="specie_118" onmousemove="ShowTooltip(evt, 'E139_AL_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E139_AL_S</text>
+ <line x1="116" y1="3020" x2="120" y2="3020" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3040" id="specie_119" onmousemove="ShowTooltip(evt, 'E149_AL_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E149_AL_S</text>
+ <line x1="116" y1="3040" x2="120" y2="3040" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3240" id="specie_129" onmousemove="ShowTooltip(evt, 'E150_AL_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E150_AL_S</text>
+ <line x1="116" y1="3240" x2="120" y2="3240" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2240" id="specie_79" onmousemove="ShowTooltip(evt, 'E151_AL_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E151_AL_S</text>
+ <line x1="116" y1="2240" x2="120" y2="2240" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1420" id="specie_38" onmousemove="ShowTooltip(evt, 'E153_So_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E153_So_A</text>
+ <line x1="116" y1="1420" x2="120" y2="1420" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3380" id="specie_136" onmousemove="ShowTooltip(evt, 'E154_Ya_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E154_Ya_S</text>
+ <line x1="116" y1="3380" x2="120" y2="3380" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="940" id="specie_14" onmousemove="ShowTooltip(evt, 'E155_Ya_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E155_Ya_A</text>
+ <line x1="116" y1="940" x2="120" y2="940" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3420" id="specie_138" onmousemove="ShowTooltip(evt, 'E156_Ya_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E156_Ya_S</text>
+ <line x1="116" y1="3420" x2="120" y2="3420" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2480" id="specie_91" onmousemove="ShowTooltip(evt, 'E157_Ya_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E157_Ya_S</text>
+ <line x1="116" y1="2480" x2="120" y2="2480" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3260" id="specie_130" onmousemove="ShowTooltip(evt, 'E163_To_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E163_To_S</text>
+ <line x1="116" y1="3260" x2="120" y2="3260" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2640" id="specie_99" onmousemove="ShowTooltip(evt, 'E164_To_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E164_To_S</text>
+ <line x1="116" y1="2640" x2="120" y2="2640" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2660" id="specie_100" onmousemove="ShowTooltip(evt, 'E165_To_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E165_To_S</text>
+ <line x1="116" y1="2660" x2="120" y2="2660" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2280" id="specie_81" onmousemove="ShowTooltip(evt, 'E166_To_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E166_To_S</text>
+ <line x1="116" y1="2280" x2="120" y2="2280" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2860" id="specie_110" onmousemove="ShowTooltip(evt, 'E170_To_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E170_To_S</text>
+ <line x1="116" y1="2860" x2="120" y2="2860" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3140" id="specie_124" onmousemove="ShowTooltip(evt, 'E171_To_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E171_To_S</text>
+ <line x1="116" y1="3140" x2="120" y2="3140" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3060" id="specie_120" onmousemove="ShowTooltip(evt, 'E172_To_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E172_To_S</text>
+ <line x1="116" y1="3060" x2="120" y2="3060" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2500" id="specie_92" onmousemove="ShowTooltip(evt, 'E177_To_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E177_To_S</text>
+ <line x1="116" y1="2500" x2="120" y2="2500" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2260" id="specie_80" onmousemove="ShowTooltip(evt, 'E178_To_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E178_To_S</text>
+ <line x1="116" y1="2260" x2="120" y2="2260" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3080" id="specie_121" onmousemove="ShowTooltip(evt, 'E197_To_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E197_To_S</text>
+ <line x1="116" y1="3080" x2="120" y2="3080" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2380" id="specie_86" onmousemove="ShowTooltip(evt, 'E199_Ya_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E199_Ya_S</text>
+ <line x1="116" y1="2380" x2="120" y2="2380" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3460" id="specie_140" onmousemove="ShowTooltip(evt, 'E200_Ya_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E200_Ya_S</text>
+ <line x1="116" y1="3460" x2="120" y2="3460" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1180" id="specie_26" onmousemove="ShowTooltip(evt, 'E240_So_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E240_So_A</text>
+ <line x1="116" y1="1180" x2="120" y2="1180" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1440" id="specie_39" onmousemove="ShowTooltip(evt, 'E241_So_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E241_So_A</text>
+ <line x1="116" y1="1440" x2="120" y2="1440" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1160" id="specie_25" onmousemove="ShowTooltip(evt, 'A167_Kr_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A167_Kr_A</text>
+ <line x1="116" y1="1160" x2="120" y2="1160" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1460" id="specie_40" onmousemove="ShowTooltip(evt, 'A168_Kr_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A168_Kr_A</text>
+ <line x1="116" y1="1460" x2="120" y2="1460" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2020" id="specie_68" onmousemove="ShowTooltip(evt, 'A169a_Kr_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A169a_Kr_A</text>
+ <line x1="116" y1="2020" x2="120" y2="2020" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1480" id="specie_41" onmousemove="ShowTooltip(evt, 'A169_Kr_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A169_Kr_A</text>
+ <line x1="116" y1="1480" x2="120" y2="1480" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1500" id="specie_42" onmousemove="ShowTooltip(evt, 'A170_Kr_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A170_Kr_A</text>
+ <line x1="116" y1="1500" x2="120" y2="1500" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="960" id="specie_15" onmousemove="ShowTooltip(evt, 'A171_Kr_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A171_Kr_A</text>
+ <line x1="116" y1="960" x2="120" y2="960" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1520" id="specie_43" onmousemove="ShowTooltip(evt, 'A172_Kr_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A172_Kr_A</text>
+ <line x1="116" y1="1520" x2="120" y2="1520" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="980" id="specie_16" onmousemove="ShowTooltip(evt, 'A173_Kr_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A173_Kr_A</text>
+ <line x1="116" y1="980" x2="120" y2="980" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2940" id="specie_114" onmousemove="ShowTooltip(evt, 'A174_Pa_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A174_Pa_S</text>
+ <line x1="116" y1="2940" x2="120" y2="2940" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1540" id="specie_44" onmousemove="ShowTooltip(evt, 'A175_Pa_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A175_Pa_A</text>
+ <line x1="116" y1="1540" x2="120" y2="1540" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1560" id="specie_45" onmousemove="ShowTooltip(evt, 'A176_Pa_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A176_Pa_A</text>
+ <line x1="116" y1="1560" x2="120" y2="1560" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1580" id="specie_46" onmousemove="ShowTooltip(evt, 'A177_Pa_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A177_Pa_A</text>
+ <line x1="116" y1="1580" x2="120" y2="1580" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1600" id="specie_47" onmousemove="ShowTooltip(evt, 'A178_Pa_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A178_Pa_A</text>
+ <line x1="116" y1="1600" x2="120" y2="1600" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1000" id="specie_17" onmousemove="ShowTooltip(evt, 'A179_Pa_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A179_Pa_A</text>
+ <line x1="116" y1="1000" x2="120" y2="1000" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1620" id="specie_48" onmousemove="ShowTooltip(evt, 'A180_Pa_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A180_Pa_A</text>
+ <line x1="116" y1="1620" x2="120" y2="1620" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1640" id="specie_49" onmousemove="ShowTooltip(evt, 'A189_Zy_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A189_Zy_A</text>
+ <line x1="116" y1="1640" x2="120" y2="1640" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1660" id="specie_50" onmousemove="ShowTooltip(evt, 'A190_Zy_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A190_Zy_A</text>
+ <line x1="116" y1="1660" x2="120" y2="1660" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1020" id="specie_18" onmousemove="ShowTooltip(evt, 'A191_Zy_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A191_Zy_A</text>
+ <line x1="116" y1="1020" x2="120" y2="1020" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1680" id="specie_51" onmousemove="ShowTooltip(evt, 'A192_Zy_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A192_Zy_A</text>
+ <line x1="116" y1="1680" x2="120" y2="1680" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1700" id="specie_52" onmousemove="ShowTooltip(evt, 'A193_Zy_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A193_Zy_A</text>
+ <line x1="116" y1="1700" x2="120" y2="1700" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1720" id="specie_53" onmousemove="ShowTooltip(evt, 'A194_Zy_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A194_Zy_A</text>
+ <line x1="116" y1="1720" x2="120" y2="1720" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1740" id="specie_54" onmousemove="ShowTooltip(evt, 'A195_Zy_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A195_Zy_A</text>
+ <line x1="116" y1="1740" x2="120" y2="1740" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1040" id="specie_19" onmousemove="ShowTooltip(evt, 'E201_Ko_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E201_Ko_A</text>
+ <line x1="116" y1="1040" x2="120" y2="1040" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1760" id="specie_55" onmousemove="ShowTooltip(evt, 'E202_Ko_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E202_Ko_A</text>
+ <line x1="116" y1="1760" x2="120" y2="1760" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1200" id="specie_27" onmousemove="ShowTooltip(evt, 'E203_Ko_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E203_Ko_A</text>
+ <line x1="116" y1="1200" x2="120" y2="1200" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1780" id="specie_56" onmousemove="ShowTooltip(evt, 'E204_Ko_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E204_Ko_A</text>
+ <line x1="116" y1="1780" x2="120" y2="1780" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1060" id="specie_20" onmousemove="ShowTooltip(evt, 'E205_Ko_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E205_Ko_A</text>
+ <line x1="116" y1="1060" x2="120" y2="1060" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3540" id="specie_144" onmousemove="ShowTooltip(evt, 'E211_Ni_W')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E211_Ni_W</text>
+ <line x1="116" y1="3540" x2="120" y2="3540" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2680" id="specie_101" onmousemove="ShowTooltip(evt, 'E212_Ni_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E212_Ni_S</text>
+ <line x1="116" y1="2680" x2="120" y2="2680" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3640" id="specie_149" onmousemove="ShowTooltip(evt, 'E213_Ni_W')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E213_Ni_W</text>
+ <line x1="116" y1="3640" x2="120" y2="3640" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2700" id="specie_102" onmousemove="ShowTooltip(evt, 'E214_Ni_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E214_Ni_S</text>
+ <line x1="116" y1="2700" x2="120" y2="2700" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2400" id="specie_87" onmousemove="ShowTooltip(evt, 'E215_Ni_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E215_Ni_S</text>
+ <line x1="116" y1="2400" x2="120" y2="2400" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3660" id="specie_150" onmousemove="ShowTooltip(evt, 'E216_Ni_W')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E216_Ni_W</text>
+ <line x1="116" y1="3660" x2="120" y2="3660" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2880" id="specie_111" onmousemove="ShowTooltip(evt, 'E217_Ni_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E217_Ni_S</text>
+ <line x1="116" y1="2880" x2="120" y2="2880" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3100" id="specie_122" onmousemove="ShowTooltip(evt, 'E218_Ni_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E218_Ni_S</text>
+ <line x1="116" y1="3100" x2="120" y2="3100" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3120" id="specie_123" onmousemove="ShowTooltip(evt, 'E219_Ni_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E219_Ni_S</text>
+ <line x1="116" y1="3120" x2="120" y2="3120" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2720" id="specie_103" onmousemove="ShowTooltip(evt, 'E220_Ni_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E220_Ni_S</text>
+ <line x1="116" y1="2720" x2="120" y2="2720" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1080" id="specie_21" onmousemove="ShowTooltip(evt, 'E221_Ko_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E221_Ko_A</text>
+ <line x1="116" y1="1080" x2="120" y2="1080" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1800" id="specie_57" onmousemove="ShowTooltip(evt, 'E222_Ko_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E222_Ko_A</text>
+ <line x1="116" y1="1800" x2="120" y2="1800" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1820" id="specie_58" onmousemove="ShowTooltip(evt, 'E223_Ko_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E223_Ko_A</text>
+ <line x1="116" y1="1820" x2="120" y2="1820" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1840" id="specie_59" onmousemove="ShowTooltip(evt, 'E224_Ko_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E224_Ko_A</text>
+ <line x1="116" y1="1840" x2="120" y2="1840" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1100" id="specie_22" onmousemove="ShowTooltip(evt, 'E225_Ko_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E225_Ko_A</text>
+ <line x1="116" y1="1100" x2="120" y2="1100" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3560" id="specie_145" onmousemove="ShowTooltip(evt, 'E232_Sh_W')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E232_Sh_W</text>
+ <line x1="116" y1="3560" x2="120" y2="3560" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3580" id="specie_146" onmousemove="ShowTooltip(evt, 'E233_Sh_W')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E233_Sh_W</text>
+ <line x1="116" y1="3580" x2="120" y2="3580" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3600" id="specie_147" onmousemove="ShowTooltip(evt, 'E234_Sh_W')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E234_Sh_W</text>
+ <line x1="116" y1="3600" x2="120" y2="3600" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="2420" id="specie_88" onmousemove="ShowTooltip(evt, 'E235_Sh_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E235_Sh_S</text>
+ <line x1="116" y1="2420" x2="120" y2="2420" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3680" id="specie_151" onmousemove="ShowTooltip(evt, 'E237_Sh_W')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E237_Sh_W</text>
+ <line x1="116" y1="3680" x2="120" y2="3680" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3700" id="specie_152" onmousemove="ShowTooltip(evt, 'E238_Sh_W')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E238_Sh_W</text>
+ <line x1="116" y1="3700" x2="120" y2="3700" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3720" id="specie_153" onmousemove="ShowTooltip(evt, 'E239_Sh_W')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E239_Sh_W</text>
+ <line x1="116" y1="3720" x2="120" y2="3720" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1860" id="specie_60" onmousemove="ShowTooltip(evt, 'A196_Mp_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A196_Mp_A</text>
+ <line x1="116" y1="1860" x2="120" y2="1860" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1980" id="specie_66" onmousemove="ShowTooltip(evt, 'A197_Mp_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A197_Mp_A</text>
+ <line x1="116" y1="1980" x2="120" y2="1980" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1120" id="specie_23" onmousemove="ShowTooltip(evt, 'A198_Mp_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A198_Mp_A</text>
+ <line x1="116" y1="1120" x2="120" y2="1120" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1880" id="specie_61" onmousemove="ShowTooltip(evt, 'A199_Mp_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A199_Mp_A</text>
+ <line x1="116" y1="1880" x2="120" y2="1880" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1900" id="specie_62" onmousemove="ShowTooltip(evt, 'A201_Mp_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A201_Mp_A</text>
+ <line x1="116" y1="1900" x2="120" y2="1900" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1920" id="specie_63" onmousemove="ShowTooltip(evt, 'A202_Mp_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A202_Mp_A</text>
+ <line x1="116" y1="1920" x2="120" y2="1920" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1940" id="specie_64" onmousemove="ShowTooltip(evt, 'A203_Mp_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A203_Mp_A</text>
+ <line x1="116" y1="1940" x2="120" y2="1940" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1960" id="specie_65" onmousemove="ShowTooltip(evt, 'A204_Mp_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A204_Mp_A</text>
+ <line x1="116" y1="1960" x2="120" y2="1960" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="1140" id="specie_24" onmousemove="ShowTooltip(evt, 'A205_Mp_A')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">A205_Mp_A</text>
+ <line x1="116" y1="1140" x2="120" y2="1140" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3440" id="specie_139" onmousemove="ShowTooltip(evt, 'E_Baikalsk_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E_Baikalsk_S</text>
+ <line x1="116" y1="3440" x2="120" y2="3440" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3400" id="specie_137" onmousemove="ShowTooltip(evt, 'E_PB_S')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E_PB_S</text>
+ <line x1="116" y1="3400" x2="120" y2="3400" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3740" id="specie_154" onmousemove="ShowTooltip(evt, 'E_Severobaikalsk_W')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E_Severobaik</text>
+ <line x1="116" y1="3740" x2="120" y2="3740" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3620" id="specie_148" onmousemove="ShowTooltip(evt, 'E_Warnachka_W')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E_Warnachka_</text>
+ <line x1="116" y1="3620" x2="120" y2="3620" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3500" id="specie_142" onmousemove="ShowTooltip(evt, 'E_SvyatoyNos_E')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E_SvyatoyNos</text>
+ <line x1="116" y1="3500" x2="120" y2="3500" style="stroke:black;stroke-width:1"></line>
+  <text x="0" y="3520" id="specie_143" onmousemove="ShowTooltip(evt, 'E_SvyatoyNos_E_0')" onmouseout="HideTooltip(evt)" style="color:black;font-size :10;font-family = monospace;">E_SvyatoyNos</text>
+ <line x1="116" y1="3520" x2="120" y2="3520" style="stroke:black;stroke-width:1"></line>
+<rect id="Pval155" onmousemove="ShowTooltip(evt, 'Proba: NA dist:0.000000  nbsubsets:59 node:155 nb_under:25')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,24,25)" x="114" y="894" width="12" height="12" style="fill:#CCCCCC;stroke:black"></rect> 
+<rect id="Pval156" onmousemove="ShowTooltip(evt, 'Proba: NA dist:0.000000  nbsubsets:59 node:156 nb_under:35')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,65,35)" x="114" y="1614" width="12" height="12" style="fill:#CCCCCC;stroke:black"></rect> 
+<rect id="Pval157" onmousemove="ShowTooltip(evt, 'Proba: NA dist:0.000000  nbsubsets:59 node:157 nb_under:7')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,88,7)" x="114" y="2354" width="12" height="12" style="fill:#CCCCCC;stroke:black"></rect> 
+<rect id="Pval158" onmousemove="ShowTooltip(evt, 'Proba: NA dist:0.000000  nbsubsets:59 node:158 nb_under:11')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,103,11)" x="114" y="2614" width="12" height="12" style="fill:#CCCCCC;stroke:black"></rect> 
+<rect id="Pval159" onmousemove="ShowTooltip(evt, 'Proba: NA dist:0.000000  nbsubsets:59 node:159 nb_under:8')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,111,8)" x="114" y="2804" width="12" height="12" style="fill:#CCCCCC;stroke:black"></rect> 
+<rect id="Pval160" onmousemove="ShowTooltip(evt, 'Proba: NA dist:0.000000  nbsubsets:59 node:160 nb_under:3')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,74,3)" x="114" y="2114" width="12" height="12" style="fill:#CCCCCC;stroke:black"></rect> 
+<rect id="Pval161" onmousemove="ShowTooltip(evt, 'Proba: NA dist:0.000000  nbsubsets:59 node:161 nb_under:2')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,79,2)" x="114" y="2224" width="12" height="12" style="fill:#CCCCCC;stroke:black"></rect> 
+<rect id="Pval162" onmousemove="ShowTooltip(evt, 'Proba: NA dist:0.000000  nbsubsets:59 node:162 nb_under:2')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,76,2)" x="114" y="2164" width="12" height="12" style="fill:#CCCCCC;stroke:black"></rect> 
+<rect id="Pval163" onmousemove="ShowTooltip(evt, 'Proba: NA dist:0.000000  nbsubsets:59 node:163 nb_under:3')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,134,3)" x="114" y="3314" width="12" height="12" style="fill:#CCCCCC;stroke:black"></rect> 
+<rect id="Pval164" onmousemove="ShowTooltip(evt, 'Proba: NA dist:0.000000  nbsubsets:59 node:164 nb_under:8')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,123,8)" x="114" y="3044" width="12" height="12" style="fill:#CCCCCC;stroke:black"></rect> 
+<rect id="Pval165" onmousemove="ShowTooltip(evt, 'Proba: NA dist:0.000000  nbsubsets:59 node:165 nb_under:2')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,137,2)" x="114" y="3384" width="12" height="12" style="fill:#CCCCCC;stroke:black"></rect> 
+<rect id="Pval166" onmousemove="ShowTooltip(evt, 'Proba: NA dist:0.000000  nbsubsets:59 node:166 nb_under:2')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,148,2)" x="114" y="3604" width="12" height="12" style="fill:#CCCCCC;stroke:black"></rect> 
+<rect id="Pval167" onmousemove="ShowTooltip(evt, 'Proba: 3.07e-01 dist:0.001914  nbsubsets:35 node:167 nbunder:26 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,25,26)" x="180" y="1024" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect id="Pval168" onmousemove="ShowTooltip(evt, 'Proba: 2.66e-01 dist:0.001914  nbsubsets:35 node:168 nbunder:36 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,66,36)" x="180" y="1794" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect id="Pval169" onmousemove="ShowTooltip(evt, 'Proba: 3.55e-01 dist:0.001914  nbsubsets:35 node:169 nbunder:11 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,92,11)" x="180" y="2442" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect id="Pval170" onmousemove="ShowTooltip(evt, 'Proba: 2.23e-01 dist:0.001914  nbsubsets:35 node:170 nbunder:22 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,114,22)" x="180" y="2832" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect id="Pval171" onmousemove="ShowTooltip(evt, 'Proba: 2.26e-01 dist:0.001914  nbsubsets:35 node:171 nbunder:10 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,81,10)" x="180" y="2204" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect id="Pval172" onmousemove="ShowTooltip(evt, 'Proba: 4.94e-01 dist:0.001914  nbsubsets:35 node:172 nbunder:9 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,123,9)" x="180" y="2999" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect id="Pval173" onmousemove="ShowTooltip(evt, 'Proba: 6.98e-01 dist:0.001914  nbsubsets:35 node:173 nbunder:4 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,135,4)" x="180" y="3334" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect id="Pval174" onmousemove="ShowTooltip(evt, 'Proba: NA dist:0.001914  nbsubsets:35 node:174 nb_under:2')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,129,2)" x="180" y="3224" width="12" height="12" style="fill:#CCCCCC;stroke:black"></rect> 
+<rect id="Pval175" onmousemove="ShowTooltip(evt, 'Proba: NA dist:0.001914  nbsubsets:35 node:175 nb_under:2')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,139,2)" x="180" y="3424" width="12" height="12" style="fill:#CCCCCC;stroke:black"></rect> 
+<rect id="Pval176" onmousemove="ShowTooltip(evt, 'Proba: 3.24e-01 dist:0.001914  nbsubsets:35 node:176 nbunder:7 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,150,7)" x="180" y="3592" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect id="Pval177" onmousemove="ShowTooltip(evt, 'Proba: 3.73e-01 dist:0.001916  nbsubsets:28 node:177 nbunder:28 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,27,28)" x="180" y="1130" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect id="Pval178" onmousemove="ShowTooltip(evt, 'Proba: 3.82e-01 dist:0.001916  nbsubsets:28 node:178 nbunder:37 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,66,37)" x="180" y="1524" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect id="Pval179" onmousemove="ShowTooltip(evt, 'Proba: 9.42e-01 dist:0.001916  nbsubsets:28 node:179 nbunder:11 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,81,11)" x="180" y="2139" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect id="Pval180" onmousemove="ShowTooltip(evt, 'Proba: 8.31e-01 dist:0.001916  nbsubsets:28 node:180 nbunder:32 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,124,32)" x="180" y="2988" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect id="Pval181" onmousemove="ShowTooltip(evt, 'Proba: 9.56e-01 dist:0.001916  nbsubsets:28 node:181 nbunder:8 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,151,8)" x="180" y="3633" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect id="Pval182" onmousemove="ShowTooltip(evt, 'Proba: 8.43e-01 dist:0.003832  nbsubsets:23 node:182 nbunder:56 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,126,56)" x="247" y="2779" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect id="Pval183" onmousemove="ShowTooltip(evt, 'Proba: 9.12e-01 dist:0.003832  nbsubsets:23 node:183 nbunder:9 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,152,9)" x="247" y="3663" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect id="Pval184" onmousemove="ShowTooltip(evt, 'Proba: 2.03e-01 dist:0.003837  nbsubsets:19 node:184 nbunder:29 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,28,29)" x="247" y="1172" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect id="Pval185" onmousemove="ShowTooltip(evt, 'Proba: 9.68e-01 dist:0.003837  nbsubsets:19 node:185 nbunder:59 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,129,59)" x="247" y="3065" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect id="Pval186" onmousemove="ShowTooltip(evt, 'Proba: 9.36e-01 dist:0.003837  nbsubsets:19 node:186 nbunder:10 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,153,10)" x="247" y="3688" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect id="Pval187" onmousemove="ShowTooltip(evt, 'Proba: 3.61e-01 dist:0.003841  nbsubsets:18 node:187 nbunder:30 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,29,30)" x="247" y="1203" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect id="Pval188" onmousemove="ShowTooltip(evt, 'Proba: 1.20e-01 dist:0.005754  nbsubsets:17 node:188 nbunder:67 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,66,67)" x="313" y="1363" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect id="Pval189" onmousemove="ShowTooltip(evt, 'Proba: 8.67e-01 dist:0.007680  nbsubsets:15 node:189 nbunder:60 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,130,60)" x="380" y="3159" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect id="Pval190" onmousemove="ShowTooltip(evt, 'Proba: NA dist:0.007680  nbsubsets:15 node:190 nb_under:2')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,143,2)" x="380" y="3504" width="12" height="12" style="fill:#CCCCCC;stroke:black"></rect> 
+<rect id="Pval191" onmousemove="ShowTooltip(evt, 'Proba: 6.16e-01 dist:0.007708  nbsubsets:14 node:191 nbunder:68 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,67,68)" x="381" y="1678" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect id="Pval192" onmousemove="ShowTooltip(evt, 'Proba: 7.19e-01 dist:0.009622  nbsubsets:13 node:192 nbunder:11 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,154,11)" x="448" y="3711" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect id="Pval193" onmousemove="ShowTooltip(evt, 'Proba: 2.49e-01 dist:0.009633  nbsubsets:12 node:193 nbunder:6 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,137,6)" x="448" y="3359" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect id="Pval194" onmousemove="ShowTooltip(evt, 'Proba: 6.93e-01 dist:0.011544  nbsubsets:11 node:194 nbunder:61 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,131,61)" x="514" y="3216" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect id="Pval195" onmousemove="ShowTooltip(evt, 'Proba: 6.25e-01 dist:0.011558  nbsubsets:9 node:195 nbunder:69 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,139,69)" x="515" y="3333" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect id="Pval196" onmousemove="ShowTooltip(evt, 'Proba: 8.67e-01 dist:0.013531  nbsubsets:8 node:196 nbunder:70 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,140,70)" x="583" y="3393" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect id="Pval197" onmousemove="ShowTooltip(evt, 'Proba: 4.94e-01 dist:0.015480  nbsubsets:7 node:197 nbunder:71 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,141,71)" x="651" y="3433" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect id="Pval198" onmousemove="ShowTooltip(evt, 'Proba: 1.61e-01 dist:0.019391  nbsubsets:6 node:198 nbunder:69 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,68,69)" x="787" y="1846" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect id="Pval199" onmousemove="ShowTooltip(evt, 'Proba: NA dist:0.021327  nbsubsets:5 node:199 nb_under:2')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,70,2)" x="854" y="2044" width="12" height="12" style="fill:#CCCCCC;stroke:black"></rect> 
+<rect id="Pval200" onmousemove="ShowTooltip(evt, 'Proba: 3.00e-05 dist:0.074232  nbsubsets:4 node:200 nbunder:71 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,70,71)" x="2691" y="1945" width="12" height="12" style="fill:#320000;stroke:black"></rect> 
+<rect id="Pval201" onmousemove="ShowTooltip(evt, 'Proba: 1.90e-03 dist:0.100406  nbsubsets:3 node:201 nbunder:73 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,143,73)" x="3600" y="3468" width="12" height="12" style="fill:#F00000;stroke:black"></rect> 
+<rect id="Pval202" onmousemove="ShowTooltip(evt, 'Proba: 2.43e-02 dist:0.100803  nbsubsets:2 node:202 nbunder:84 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,154,84)" x="3614" y="3589" width="12" height="12" style="fill:#F00000;stroke:black"></rect> 
+<rect id="Pval203" onmousemove="ShowTooltip(evt, 'Proba: 4.54e-01 dist:0.102570  nbsubsets:1 node:203 nbunder:155 ')" onmouseout="HideTooltip(evt)" onmousedown="select_species(evt,154,155)" x="3675" y="2767" width="12" height="12" style="fill:#FFFF00;stroke:black"></rect> 
+<rect class="tooltip_bg" id="tooltip_bg" x="0" y="0" rx="4" ry="4" width="55" height="17" visibility="hidden"></rect>
+ <text class="tooltip" id="tooltip" x="0" y="0" visibility="hidden">Tooltip</text>
+</svg>
+<br> View/save curves and dendrogram  <a href="http://bioinfo.mnhn.fr/abi/public/asap/temp/611.1804289383/COI_Eve.fa.svg">here</a><br><br><i>Responsive Crossing lines Legend: Green Line= grouping distance (Dc)- Red line = treshold distance(Dt)</i><br>Running time:
+0 min 37 seconds
+ <br>
+<script>mendeleyWebImporter = {
+  downloadPdfs(e,t) { return this._call('downloadPdfs', [e,t]); },
+  open() { return this._call('open', []); },
+  setLoginToken(e) { return this._call('setLoginToken', [e]); },
+  _call(methodName, methodArgs) {
+    const id = Math.random();
+    window.postMessage({ id, token: '0.6398715128161798', methodName, methodArgs }, 'https://bioinfo.mnhn.fr');
+    return new Promise(resolve => {
+      const listener = window.addEventListener('message', event => {
+        const data = event.data;
+        if (typeof data !== 'object' || !('result' in data) || data.id !== id) return;
+        window.removeEventListener('message', listener);
+        resolve(data.result);
+      });
+    });
+  }
+};</script></body></html>
