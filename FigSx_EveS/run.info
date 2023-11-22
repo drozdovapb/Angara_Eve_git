@@ -1,0 +1,1 @@
+/media/drozdovapb/a198418e-08b2-44b4-897e-294a941680c9/apt/ugene-46.0/ugenecl --task=data:cmdline/align.uwl --log-no-task-progress --ugene-output-progress-state --ugene-output-error --ini-file="/home/drozdovapb/.config/Unipro/UGENE.ini" --log-level-details --mode=0 --max-iterations=8 --stable=1 --in=/tmp/uMuOCD.fasta --out=/tmp/heFxjM.fasta --format=fasta
