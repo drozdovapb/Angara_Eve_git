@@ -1,5 +1,5 @@
-library("phangorn")
-library("tanggle")
+library(phangorn)
+library(tanggle)
 
 ## read the data = nexus file recorded with SplitsTree4 (!)
 network <- read.nexus.networx("../data/COI.nex")
