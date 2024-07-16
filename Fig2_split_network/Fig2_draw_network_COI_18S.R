@@ -1,5 +1,6 @@
 library(tanggle)
 library(dplyr) ## for some data rearrangement
+library(phangorn)
 
 ## read the data = nexus file recorded with SplitsTree4 (!)
 Nnet <- read.nexus.networx("../data/COI_Eve_wnewout.fa.nex")
